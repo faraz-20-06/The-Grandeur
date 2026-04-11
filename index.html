@@ -1,760 +1,964 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Grandeur — Ultra Luxury Hotel & Resort</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            gold: { 50:'#FBF8F1', 100:'#F5EDDA', 200:'#EBDAAF', 300:'#DFC37E', 400:'#D4AD52', 500:'#C8A97E', 600:'#B8934E', 700:'#9A7638', 800:'#7D5F2F', 900:'#654D29' },
-            luxury: { 50:'#F5F5F5', 100:'#E8E8E8', 200:'#D1D1D1', 300:'#AAAAAA', 400:'#888888', 500:'#666666', 600:'#444444', 700:'#2A2A2A', 800:'#1A1A1A', 900:'#0D0D0D', 950:'#060606' }
-          },
-          fontFamily: { serif: ['Playfair Display','serif'], sans: ['Inter','sans-serif'] }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TG Grand — Luxury Redefined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C9A96E','gold-light':'#D4B896','gold-dark':'#A68B4B',
+                        dark:'#0A0A0A','dark-card':'#121212','dark-border':'#222',
+                        cream:'#F5F0EB',muted:'#7A7A7A',warm:'#1a1510',
+                    },
+                    fontFamily:{ display:['Cormorant Garamond','serif'], body:['Space Grotesk','sans-serif'] }
+                }
+            }
         }
-      }
-    }
-  </script>
-  <style>
-    * { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #0D0D0D; }
-    ::-webkit-scrollbar-thumb { background: #C8A97E44; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #C8A97E88; }
+    </script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{background:#0A0A0A;color:#F5F0EB;font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+        ::-webkit-scrollbar{width:4px}
+        ::-webkit-scrollbar-track{background:#0A0A0A}
+        ::-webkit-scrollbar-thumb{background:#C9A96E;border-radius:4px}
 
-    @keyframes fade-in-up { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes shimmer { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
-    @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
-    @keyframes pulse-gold { 0%,100% { box-shadow:0 0 0 0 rgba(200,169,126,0.4); } 50% { box-shadow:0 0 0 12px rgba(200,169,126,0); } }
-    @keyframes marquee { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+        #preloader{position:fixed;inset:0;background:#0A0A0A;z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem;transition:opacity 1s ease,visibility 1s ease}
+        #preloader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+        .pre-logo{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;letter-spacing:.6rem;color:#C9A96E;opacity:0;animation:preFade 1s ease .3s forwards}
+        .pre-line{width:160px;height:1px;background:#222;position:relative;overflow:hidden}
+        .pre-line::after{content:'';position:absolute;left:-50%;top:0;height:100%;width:50%;background:linear-gradient(90deg,transparent,#C9A96E,transparent);animation:preSlide 1.4s ease-in-out infinite}
+        .pre-sub{font-size:.65rem;letter-spacing:.4rem;color:#7A7A7A;text-transform:uppercase;opacity:0;animation:preFade 1s ease .6s forwards}
+        @keyframes preFade{to{opacity:1}}
+        @keyframes preSlide{0%{left:-50%}100%{left:100%}}
 
-    .anim-fiu { opacity:0; animation:fade-in-up 1s cubic-bezier(0.16,1,0.3,1) forwards; }
-    .d1{animation-delay:.1s} .d2{animation-delay:.2s} .d3{animation-delay:.3s} .d4{animation-delay:.4s} .d5{animation-delay:.5s} .d6{animation-delay:.6s}
+        #three-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+        #grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:180px}
 
-    .reveal { opacity:0; transform:translateY(40px); transition:all 1.2s cubic-bezier(0.16,1,0.3,1); }
-    .reveal.active { opacity:1; transform:translateY(0); }
+        /* Nav */
+        #nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:all .5s cubic-bezier(.16,1,.3,1)}
+        #nav.scrolled{background:rgba(10,10,10,.88);backdrop-filter:blur(30px) saturate(1.4);padding:1rem 3rem;border-bottom:1px solid rgba(201,169,110,.08)}
+        .nav-link{color:#F5F0EB;text-decoration:none;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;position:relative;transition:color .3s;font-weight:400}
+        .nav-link::after{content:'';position:absolute;bottom:-6px;left:50%;width:0;height:1px;background:#C9A96E;transition:width .3s,left .3s}
+        .nav-link:hover{color:#C9A96E}
+        .nav-link:hover::after{width:100%;left:0}
 
-    .gold-line { background:linear-gradient(90deg,transparent,#C8A97E,transparent); height:1px; }
-    .gold-text { background:linear-gradient(135deg,#DFC37E,#C8A97E,#9A7638,#C8A97E,#DFC37E); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .gold-border { border:1px solid #C8A97E33; }
-    .gold-glow { box-shadow:0 0 30px rgba(200,169,126,0.15); }
+        .btn-gold{background:#C9A96E;color:#0A0A0A;padding:.9rem 2.2rem;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;transition:all .35s cubic-bezier(.16,1,.3,1);display:inline-flex;align-items:center;gap:.6rem;position:relative;overflow:hidden}
+        .btn-gold::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.2) 50%,transparent 70%);transform:translateX(-100%);transition:transform .6s}
+        .btn-gold:hover::before{transform:translateX(100%)}
+        .btn-gold:hover{background:#D4B896;transform:translateY(-3px);box-shadow:0 12px 40px rgba(201,169,110,.2)}
+        .btn-gold:active{transform:translateY(-1px)}
 
-    .modal-overlay { transition:opacity .3s ease; }
-    .modal-content { transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .3s ease; }
-    .modal-overlay.hidden { opacity:0; pointer-events:none; }
-    .modal-overlay.hidden .modal-content { transform:scale(.92) translateY(20px); opacity:0; }
-    .lightbox-overlay { transition:opacity .3s ease; }
-    .lightbox-overlay.hidden { opacity:0; pointer-events:none; }
-    .toast { transition:all .4s cubic-bezier(.16,1,.3,1); }
-    .toast.hidden { transform:translateY(20px) translateX(20px); opacity:0; pointer-events:none; }
+        .btn-outline{background:transparent;color:#F5F0EB;padding:.9rem 2.2rem;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(201,169,110,.3);cursor:pointer;transition:all .35s cubic-bezier(.16,1,.3,1);display:inline-flex;align-items:center;gap:.6rem}
+        .btn-outline:hover{border-color:#C9A96E;color:#C9A96E;transform:translateY(-3px);box-shadow:0 8px 30px rgba(201,169,110,.06)}
+        .btn-outline:active{transform:translateY(-1px)}
 
-    .tilt-card { transform-style:preserve-3d; transition:transform .15s ease-out; }
-    .flip-card { perspective:1000px; }
-    .flip-card-inner { transition:transform .8s cubic-bezier(.16,1,.3,1); transform-style:preserve-3d; }
-    .flip-card:hover .flip-card-inner { transform:rotateY(180deg); }
-    .flip-card-front,.flip-card-back { backface-visibility:hidden; }
-    .flip-card-back { transform:rotateY(180deg); }
-    .parallax-slow { will-change:transform; }
-    video { object-fit:cover; }
-    html { scroll-behavior:smooth; }
-    body { background:#0D0D0D; color:#F5F5F5; }
-    .glass { background:rgba(13,13,13,0.6); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(200,169,126,0.1); }
-    .glass-light { background:rgba(255,255,255,0.03); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); }
-  </style>
+        .btn-sm{padding:.6rem 1.4rem;font-size:.65rem}
+
+        @keyframes heroFadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        .ha1{animation:heroFadeUp 1.2s cubic-bezier(.16,1,.3,1) .8s both}
+        .ha2{animation:heroFadeUp 1.2s cubic-bezier(.16,1,.3,1) 1.1s both}
+        .ha3{animation:heroFadeUp 1.2s cubic-bezier(.16,1,.3,1) 1.4s both}
+        .ha4{animation:heroFadeUp 1.2s cubic-bezier(.16,1,.3,1) 1.7s both}
+        .ha5{animation:heroFadeUp 1.2s cubic-bezier(.16,1,.3,1) 2s both}
+
+        .scroll-ind{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.8rem}
+        .scroll-ind span{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:#7A7A7A}
+        .scroll-mouse{width:22px;height:34px;border:1.5px solid rgba(201,169,110,.4);border-radius:12px;position:relative}
+        .scroll-mouse::after{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:7px;background:#C9A96E;border-radius:3px;animation:scrollDot 2s ease-in-out infinite}
+        @keyframes scrollDot{0%,100%{opacity:.3;transform:translateX(-50%) translateY(0)}50%{opacity:1;transform:translateX(-50%) translateY(10px)}}
+
+        .reveal{opacity:0;transform:translateY(55px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+        .reveal.vis{opacity:1;transform:translateY(0)}
+        .rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}.rd4{transition-delay:.4s}.rd5{transition-delay:.5s}.rd6{transition-delay:.6s}
+
+        .section-solid{background:#0A0A0A;position:relative;z-index:1}
+        .section-fade{background:linear-gradient(to bottom,transparent 0%,#0A0A0A 10%,#0A0A0A 90%,transparent 100%);position:relative;z-index:1}
+        .section-warm{background:linear-gradient(135deg,#0e0c08 0%,#0A0A0A 50%,#0c0a06 100%);position:relative;z-index:1}
+
+        .gold-line{width:50px;height:1px;background:linear-gradient(90deg,#C9A96E,transparent)}
+
+        .room-card{background:#121212;border:1px solid #222;border-radius:16px;overflow:hidden;transition:all .6s cubic-bezier(.16,1,.3,1);cursor:pointer;position:relative}
+        .room-card::before{content:'';position:absolute;inset:0;border-radius:16px;background:linear-gradient(135deg,rgba(201,169,110,.05),transparent);opacity:0;transition:opacity .5s;z-index:1;pointer-events:none}
+        .room-card:hover{transform:translateY(-12px);border-color:rgba(201,169,110,.3);box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(201,169,110,.04)}
+        .room-card:hover::before{opacity:1}
+        .room-img{width:100%;height:260px;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+        .room-card:hover .room-img{transform:scale(1.06)}
+
+        .amenity-card{background:#121212;border:1px solid #222;border-radius:16px;padding:2.5rem 2rem;transition:all .5s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+        .amenity-card::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at center,rgba(201,169,110,.04),transparent 50%);opacity:0;transition:opacity .5s;pointer-events:none}
+        .amenity-card:hover{border-color:rgba(201,169,110,.25);transform:translateY(-6px)}
+        .amenity-card:hover::after{opacity:1}
+        .amenity-card:hover .amen-icon{color:#C9A96E;transform:scale(1.1)}
+        .amen-icon{font-size:1.8rem;color:#7A7A7A;transition:all .5s}
+
+        .dine-card{border-radius:20px;overflow:hidden;position:relative;cursor:pointer;height:400px}
+        .dine-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+        .dine-card:hover img{transform:scale(1.08)}
+        .dine-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.95) 0%,rgba(10,10,10,.3) 40%,transparent 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem;transition:background .5s}
+        .dine-card:hover .dine-overlay{background:linear-gradient(to top,rgba(10,10,10,.98) 0%,rgba(10,10,10,.4) 50%,rgba(201,169,110,.03) 100%)}
+
+        .test-card{background:#121212;border:1px solid #222;border-radius:16px;padding:2.5rem;position:relative;transition:all .5s}
+        .test-card:hover{border-color:rgba(201,169,110,.2);transform:translateY(-4px)}
+        .test-quote{font-family:'Cormorant Garamond',serif;font-size:4rem;color:rgba(201,169,110,.15);line-height:1;position:absolute;top:1.5rem;left:2rem}
+
+        .stat-num{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;color:#C9A96E;line-height:1}
+
+        .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(16px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .4s}
+        .modal-overlay.active{opacity:1;visibility:visible}
+        .modal-box{background:#121212;border:1px solid #222;border-radius:20px;max-width:680px;width:94%;max-height:90vh;overflow-y:auto;transform:scale(.9) translateY(30px);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+        .modal-overlay.active .modal-box{transform:scale(1) translateY(0)}
+        .modal-box::-webkit-scrollbar{width:3px}
+        .modal-box::-webkit-scrollbar-thumb{background:#C9A96E;border-radius:3px}
+
+        .booking-panel{position:fixed;top:0;right:-520px;width:500px;max-width:95vw;height:100vh;background:#0e0e0e;border-left:1px solid #222;z-index:500;transition:right .6s cubic-bezier(.16,1,.3,1);overflow-y:auto;padding:2.5rem}
+        .booking-panel.open{right:0}
+        .booking-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:499;opacity:0;visibility:hidden;transition:all .4s}
+        .booking-backdrop.open{opacity:1;visibility:visible}
+
+        .form-input{background:rgba(255,255,255,.03);border:1px solid #222;border-radius:8px;padding:.85rem 1.1rem;color:#F5F0EB;font-family:'Space Grotesk',sans-serif;font-size:.85rem;width:100%;outline:none;transition:border-color .3s,box-shadow .3s}
+        .form-input:focus{border-color:#C9A96E;box-shadow:0 0 0 3px rgba(201,169,110,.08)}
+        .form-input::placeholder{color:#555}
+        .form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%237A7A7A'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+
+        #toast-container{position:fixed;bottom:2rem;right:2rem;z-index:10001;display:flex;flex-direction:column;gap:.7rem;pointer-events:none}
+        .toast{background:#141414;border:1px solid rgba(201,169,110,.3);color:#F5F0EB;padding:1rem 1.5rem;border-radius:12px;font-size:.82rem;transform:translateX(140%);transition:transform .5s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;gap:.8rem;pointer-events:auto;box-shadow:0 12px 40px rgba(0,0,0,.5);max-width:360px}
+        .toast.show{transform:translateX(0)}
+
+        #mobile-menu{position:fixed;inset:0;background:rgba(10,10,10,.98);backdrop-filter:blur(30px);z-index:199;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;visibility:hidden;transition:all .4s}
+        #mobile-menu.active{opacity:1;visibility:visible}
+        #mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#F5F0EB;text-decoration:none;transition:color .3s;letter-spacing:.08em}
+        #mobile-menu a:hover{color:#C9A96E}
+        .hamburger{display:none;flex-direction:column;gap:6px;cursor:pointer;z-index:201;background:none;border:none;padding:6px}
+        .hamburger span{width:24px;height:1.5px;background:#F5F0EB;transition:all .3s;display:block}
+        .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5.5px)}
+        .hamburger.active span:nth-child(2){opacity:0}
+        .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5.5px)}
+
+        .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,280px);gap:12px}
+        .gallery-grid .gi{border-radius:12px;overflow:hidden;position:relative;cursor:pointer}
+        .gallery-grid .gi img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+        .gallery-grid .gi:hover img{transform:scale(1.08)}
+        .gallery-grid .gi:nth-child(1){grid-column:1/3;grid-row:1/3}
+        .gallery-grid .gi::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.4),transparent 50%);opacity:0;transition:opacity .5s}
+        .gallery-grid .gi:hover::after{opacity:1}
+
+        .cta-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.06),transparent 70%);pointer-events:none;filter:blur(50px)}
+
+        .star-rating{color:#C9A96E;font-size:.7rem;letter-spacing:.15em}
+
+        @media(max-width:1024px){.gallery-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}.gallery-grid .gi:nth-child(1){grid-column:1/3;grid-row:auto}.gallery-grid .gi{height:220px}}
+        @media(max-width:768px){
+            .hamburger{display:flex}
+            .nav-links-d,.nav-cta-d{display:none!important}
+            #nav{padding:1.2rem 1.5rem}
+            .stat-num{font-size:2.8rem}
+            .gallery-grid{grid-template-columns:1fr 1fr}.gallery-grid .gi:nth-child(1){grid-column:1/3}.gallery-grid .gi{height:180px}
+            .dine-card{height:300px}
+        }
+        @media(max-width:480px){.gallery-grid{grid-template-columns:1fr}.gallery-grid .gi:nth-child(1){grid-column:1}}
+        @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    </style>
 </head>
 <body>
 
-<!-- Toast -->
-<div id="toast" class="toast hidden fixed bottom-6 right-6 z-[200] glass rounded-xl px-6 py-4 flex items-center gap-3 max-w-sm gold-glow">
-  <iconify-icon id="toast-icon" icon="lucide:check-circle" width="20" class="text-gold-400 flex-shrink-0"></iconify-icon>
-  <span id="toast-msg" class="text-sm font-medium text-gold-100"></span>
+<!-- Preloader -->
+<div id="preloader">
+    <div class="pre-logo">TG GRAND</div>
+    <div class="pre-line"></div>
+    <div class="pre-sub">Luxury Hospitality</div>
+</div>
+
+<div id="grain"></div>
+<canvas id="three-canvas"></canvas>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+    <a href="#about" onclick="closeMM()">About</a>
+    <a href="#rooms" onclick="closeMM()">Rooms</a>
+    <a href="#dining" onclick="closeMM()">Dining</a>
+    <a href="#gallery" onclick="closeMM()">Gallery</a>
+    <a href="#contact" onclick="closeMM()">Contact</a>
+    <button class="btn-gold btn-sm mt-4" onclick="closeMM();openBooking()">Book Now</button>
+</div>
+
+<!-- Booking Backdrop -->
+<div class="booking-backdrop" id="booking-backdrop" onclick="closeBooking()"></div>
+
+<!-- Booking Panel -->
+<div class="booking-panel" id="booking-panel">
+    <div class="flex items-center justify-between mb-8">
+        <div>
+            <p class="text-gold text-xs tracking-[.2em] uppercase mb-1">Reserve Your Stay</p>
+            <h3 class="font-display text-cream text-2xl" style="font-weight:400">Book a Room</h3>
+        </div>
+        <button onclick="closeBooking()" class="text-muted hover:text-cream transition-colors text-2xl bg-transparent border-none cursor-pointer" aria-label="Close">&times;</button>
+    </div>
+    <form id="booking-form" onsubmit="handleBooking(event)" class="flex flex-col gap-4">
+        <div>
+            <label class="text-muted text-xs uppercase tracking-wider block mb-2">Full Name</label>
+            <input type="text" class="form-input" placeholder="John Doe" required>
+        </div>
+        <div>
+            <label class="text-muted text-xs uppercase tracking-wider block mb-2">Email</label>
+            <input type="email" class="form-input" placeholder="john@example.com" required>
+        </div>
+        <div>
+            <label class="text-muted text-xs uppercase tracking-wider block mb-2">Phone</label>
+            <input type="tel" class="form-input" placeholder="+92 300 1234567">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+            <div>
+                <label class="text-muted text-xs uppercase tracking-wider block mb-2">Check-in</label>
+                <input type="date" class="form-input" required>
+            </div>
+            <div>
+                <label class="text-muted text-xs uppercase tracking-wider block mb-2">Check-out</label>
+                <input type="date" class="form-input" required>
+            </div>
+        </div>
+        <div>
+            <label class="text-muted text-xs uppercase tracking-wider block mb-2">Room Type</label>
+            <select class="form-input form-select" required>
+                <option value="" disabled selected>Select room</option>
+                <option>Royal Suite — $450/night</option>
+                <option>Heritage Deluxe — $320/night</option>
+                <option>Garden View — $240/night</option>
+                <option>Premium Standard — $180/night</option>
+            </select>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+            <div>
+                <label class="text-muted text-xs uppercase tracking-wider block mb-2">Adults</label>
+                <select class="form-input form-select"><option>1</option><option selected>2</option><option>3</option><option>4</option></select>
+            </div>
+            <div>
+                <label class="text-muted text-xs uppercase tracking-wider block mb-2">Children</label>
+                <select class="form-input form-select"><option selected>0</option><option>1</option><option>2</option><option>3</option></select>
+            </div>
+        </div>
+        <div>
+            <label class="text-muted text-xs uppercase tracking-wider block mb-2">Special Requests</label>
+            <textarea class="form-input" rows="3" placeholder="Any special requirements..."></textarea>
+        </div>
+        <button type="submit" class="btn-gold w-full justify-center mt-2">Confirm Reservation <i class="fa-solid fa-check text-xs"></i></button>
+        <p class="text-muted text-xs text-center mt-2">No payment required now. Pay at check-in.</p>
+    </form>
 </div>
 
 <!-- Navigation -->
-<nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500">
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
-    <a href="#" class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded-full border border-gold-500/50 flex items-center justify-center" style="animation:pulse-gold 3s infinite">
-        <iconify-icon icon="lucide:crown" width="14" class="text-gold-400"></iconify-icon>
-      </div>
-      <span class="text-xl font-serif font-semibold tracking-tight text-white">The Grandeur</span>
-    </a>
-    <div class="hidden lg:flex items-center gap-10">
-      <a href="#rooms" class="text-xs font-semibold uppercase tracking-widest text-white/60 hover:text-gold-400 transition-colors duration-300">Rooms</a>
-      <a href="#experience" class="text-xs font-semibold uppercase tracking-widest text-white/60 hover:text-gold-400 transition-colors duration-300">Experience</a>
-      <a href="#amenities" class="text-xs font-semibold uppercase tracking-widest text-white/60 hover:text-gold-400 transition-colors duration-300">Amenities</a>
-      <a href="#gallery" class="text-xs font-semibold uppercase tracking-widest text-white/60 hover:text-gold-400 transition-colors duration-300">Gallery</a>
-      <a href="#reviews" class="text-xs font-semibold uppercase tracking-widest text-white/60 hover:text-gold-400 transition-colors duration-300">Reviews</a>
-      <button onclick="openBookingModal('deluxe')" class="bg-gold-500 text-luxury-900 text-xs font-bold uppercase tracking-wider h-11 px-7 rounded-full hover:bg-gold-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(200,169,126,0.3)] transition-all duration-300">Reserve</button>
+<nav id="nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="font-display text-gold text-xl tracking-[.3em] no-underline" style="font-weight:300">TG GRAND</a>
+    <div class="nav-links-d flex items-center gap-10">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#rooms" class="nav-link">Rooms</a>
+        <a href="#dining" class="nav-link">Dining</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#contact" class="nav-link">Contact</a>
     </div>
-    <button id="mobile-toggle" onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 rounded-full glass flex items-center justify-center">
-      <iconify-icon id="menu-icon" icon="lucide:menu" width="20" class="text-white"></iconify-icon>
-    </button>
-  </div>
-  <div id="mobile-menu" class="lg:hidden overflow-hidden transition-all duration-500 ease-in-out" style="max-height:0;opacity:0">
-    <div class="px-6 pb-8 pt-4 flex flex-col gap-5 glass mx-4 rounded-2xl mb-4">
-      <a href="#rooms" onclick="closeMobileMenu()" class="text-sm font-medium text-white/70 hover:text-gold-400 py-1">Rooms & Suites</a>
-      <a href="#experience" onclick="closeMobileMenu()" class="text-sm font-medium text-white/70 hover:text-gold-400 py-1">Experience</a>
-      <a href="#amenities" onclick="closeMobileMenu()" class="text-sm font-medium text-white/70 hover:text-gold-400 py-1">Amenities</a>
-      <a href="#gallery" onclick="closeMobileMenu()" class="text-sm font-medium text-white/70 hover:text-gold-400 py-1">Gallery</a>
-      <a href="#reviews" onclick="closeMobileMenu()" class="text-sm font-medium text-white/70 hover:text-gold-400 py-1">Reviews</a>
-      <button onclick="openBookingModal('deluxe');closeMobileMenu()" class="bg-gold-500 text-luxury-900 text-sm font-bold h-11 rounded-full w-full mt-2">Reserve Now</button>
+    <div class="flex items-center gap-4">
+        <button class="btn-gold btn-sm nav-cta-d" onclick="openBooking()">Book Now</button>
+        <button class="hamburger" id="ham-btn" aria-label="Menu" onclick="toggleMM()">
+            <span></span><span></span><span></span>
+        </button>
     </div>
-  </div>
 </nav>
 
-<!-- Hero -->
-<section class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
-  <div class="absolute inset-0 -z-10">
-    <video autoplay muted loop playsinline poster="https://picsum.photos/seed/luxury-hotel-night/1920/1080.jpg" class="w-full h-full">
-      <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4">
-    </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-luxury-950/70 via-luxury-950/50 to-luxury-950"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-luxury-950/60 via-transparent to-transparent"></div>
-  </div>
-  <div class="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-gold-500/5 blur-[100px] parallax-slow"></div>
-  <div class="absolute bottom-1/3 left-1/6 w-64 h-64 rounded-full bg-gold-500/5 blur-[80px] parallax-slow"></div>
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-12 items-center pt-20">
-    <div class="lg:col-span-7 flex flex-col items-start">
-      <div class="anim-fiu flex items-center gap-3 mb-8">
-        <div class="gold-line w-12"></div>
-        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">Five-Star Luxury</span>
-      </div>
-      <h1 class="anim-fiu d1 text-5xl md:text-6xl lg:text-[80px] font-serif font-medium leading-[0.95] tracking-tight mb-8">
-        Where <em class="text-gold-400 italic">timeless</em><br>elegance resides
-      </h1>
-      <p class="anim-fiu d2 text-base lg:text-lg text-white/50 leading-relaxed max-w-lg mb-10 font-light">
-        An extraordinary sanctuary of sophistication. Immerse yourself in unparalleled luxury where every detail has been curated for the discerning traveler.
-      </p>
-      <div class="anim-fiu d3 flex flex-wrap gap-4 mb-14">
-        <button onclick="openBookingModal('penthouse')" class="group bg-gold-500 text-luxury-900 text-xs font-bold uppercase tracking-wider h-13 px-9 rounded-full hover:bg-gold-400 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(200,169,126,0.35)] transition-all duration-300 flex items-center gap-3 py-3.5">
-          Begin Your Journey
-          <iconify-icon icon="lucide:arrow-right" width="14" class="transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
-        </button>
-        <button onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})" class="border border-white/20 text-white text-xs font-bold uppercase tracking-wider h-13 px-9 rounded-full hover:border-gold-500/50 hover:text-gold-400 transition-all duration-300 py-3.5">Explore</button>
-      </div>
-      <div class="anim-fiu d4 flex items-center gap-10">
+<!-- HERO -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center" style="z-index:1">
+    <div class="text-center px-6" id="hero-content">
+        <p class="ha1 font-body text-gold text-xs tracking-[.4em] uppercase mb-5">Welcome to TG Grand Hotel</p>
+        <h1 class="ha2 font-display text-cream leading-[.92] mb-5" style="font-size:clamp(3.2rem,9vw,8.5rem);font-weight:300;letter-spacing:.02em">Where Luxury<br>Meets Legacy</h1>
+        <p class="ha3 font-body text-muted max-w-lg mx-auto mb-10 text-sm leading-relaxed">An exquisite sanctuary of elegance and comfort, nestled in the heart of the city. Experience hospitality that transcends expectation.</p>
+        <div class="ha4 flex flex-wrap items-center justify-center gap-4">
+            <button class="btn-gold" onclick="openBooking()">Reserve Your Stay <i class="fa-solid fa-arrow-right text-xs"></i></button>
+            <button class="btn-outline" onclick="scrollTo('#rooms')">View Rooms</button>
+        </div>
+        <div class="ha5 flex items-center justify-center gap-8 mt-14">
+            <div class="text-center"><p class="font-display text-gold text-2xl" style="font-weight:300">4.9</p><p class="text-muted text-xs mt-1">Guest Rating</p></div>
+            <div style="width:1px;height:30px;background:#222"></div>
+            <div class="text-center"><p class="font-display text-gold text-2xl" style="font-weight:300">150+</p><p class="text-muted text-xs mt-1">Luxury Rooms</p></div>
+            <div style="width:1px;height:30px;background:#222"></div>
+            <div class="text-center"><p class="font-display text-gold text-2xl" style="font-weight:300">5-Star</p><p class="text-muted text-xs mt-1">Certified</p></div>
+        </div>
+    </div>
+    <div class="scroll-ind ha5">
+        <div class="scroll-mouse"></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section-fade min-h-screen flex items-center py-32 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-20 items-center">
         <div>
-          <div class="text-3xl font-serif font-semibold gold-text">4.9</div>
-          <div class="flex items-center gap-0.5 mt-1">
-            <iconify-icon icon="lucide:star" width="11" class="text-gold-400"></iconify-icon>
-            <iconify-icon icon="lucide:star" width="11" class="text-gold-400"></iconify-icon>
-            <iconify-icon icon="lucide:star" width="11" class="text-gold-400"></iconify-icon>
-            <iconify-icon icon="lucide:star" width="11" class="text-gold-400"></iconify-icon>
-            <iconify-icon icon="lucide:star" width="11" class="text-gold-400"></iconify-icon>
-          </div>
-          <div class="text-[10px] text-white/30 mt-1 uppercase tracking-wider">2,400+ Reviews</div>
+            <div class="reveal"><div class="gold-line mb-6"></div></div>
+            <p class="reveal rd1 text-gold text-xs tracking-[.3em] uppercase mb-4">Our Story</p>
+            <h2 class="reveal rd2 font-display text-cream mb-3" style="font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;line-height:1.05">A Legacy of<br>Extraordinary Hospitality</h2>
+            <p class="reveal rd3 text-muted leading-relaxed text-sm mb-6">Since 1985, TG Grand has been the crown jewel of luxury hospitality. What began as a vision to create the finest hotel experience has evolved into an iconic destination where every detail is curated to perfection.</p>
+            <p class="reveal rd4 text-muted leading-relaxed text-sm mb-8">Our commitment to excellence is reflected in every corner — from the hand-selected Italian marble in our lobby to the bespoke linens that grace each suite. We don't just accommodate guests; we create lasting memories.</p>
+            <div class="reveal rd5 flex flex-wrap gap-4">
+                <button class="btn-outline btn-sm" onclick="scrollTo('#gallery')">Explore Gallery <i class="fa-solid fa-images text-xs"></i></button>
+                <button class="btn-outline btn-sm" onclick="scrollTo('#amenities')">Our Amenities</button>
+            </div>
         </div>
-        <div class="w-px h-12 bg-white/10"></div>
-        <div>
-          <div class="text-3xl font-serif font-semibold gold-text">#1</div>
-          <div class="text-[10px] text-white/30 mt-1 uppercase tracking-wider">In the City</div>
+        <div class="grid grid-cols-2 gap-5">
+            <div class="reveal rd1 p-7 border border-dark-border rounded-2xl bg-dark-card/60 backdrop-blur-sm">
+                <div class="stat-num" data-count="38">0</div>
+                <p class="text-muted text-xs tracking-wider uppercase mt-2">Years of Excellence</p>
+            </div>
+            <div class="reveal rd2 p-7 border border-dark-border rounded-2xl bg-dark-card/60 backdrop-blur-sm mt-8">
+                <div class="stat-num" data-count="50000" data-suffix="+">0</div>
+                <p class="text-muted text-xs tracking-wider uppercase mt-2">Happy Guests</p>
+            </div>
+            <div class="reveal rd3 p-7 border border-dark-border rounded-2xl bg-dark-card/60 backdrop-blur-sm">
+                <div class="stat-num" data-count="15">0</div>
+                <p class="text-muted text-xs tracking-wider uppercase mt-2">Awards Won</p>
+            </div>
+            <div class="reveal rd4 p-7 border border-dark-border rounded-2xl bg-dark-card/60 backdrop-blur-sm mt-8">
+                <div class="stat-num" data-count="98" data-suffix="%">0</div>
+                <p class="text-muted text-xs tracking-wider uppercase mt-2">Satisfaction Rate</p>
+            </div>
         </div>
-        <div class="w-px h-12 bg-white/10"></div>
-        <div>
-          <div class="text-3xl font-serif font-semibold gold-text">15+</div>
-          <div class="text-[10px] text-white/30 mt-1 uppercase tracking-wider">Years</div>
-        </div>
-      </div>
     </div>
-    <div class="lg:col-span-5 hidden lg:block">
-      <div class="glass rounded-2xl p-8 gold-glow" style="animation:float 6s ease-in-out infinite">
-        <div class="flex items-center gap-2 mb-6">
-          <iconify-icon icon="lucide:calendar" width="16" class="text-gold-400"></iconify-icon>
-          <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Check Availability</span>
-        </div>
-        <div class="grid grid-cols-2 gap-4 mb-4">
-          <div>
-            <label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Check-in</label>
-            <input type="date" id="hero-checkin" class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-gold-500/50 transition-colors">
-          </div>
-          <div>
-            <label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Check-out</label>
-            <input type="date" id="hero-checkout" class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-gold-500/50 transition-colors">
-          </div>
-        </div>
-        <div class="grid grid-cols-2 gap-4 mb-6">
-          <div>
-            <label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Guests</label>
-            <select id="hero-guests" class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-gold-500/50 transition-colors">
-              <option value="1" class="bg-luxury-900">1 Guest</option>
-              <option value="2" selected class="bg-luxury-900">2 Guests</option>
-              <option value="3" class="bg-luxury-900">3 Guests</option>
-              <option value="4" class="bg-luxury-900">4 Guests</option>
-            </select>
-          </div>
-          <div>
-            <label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Room</label>
-            <select id="hero-room" class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-gold-500/50 transition-colors">
-              <option value="standard" class="bg-luxury-900">Standard</option>
-              <option value="deluxe" selected class="bg-luxury-900">Deluxe</option>
-              <option value="suite" class="bg-luxury-900">Suite</option>
-              <option value="penthouse" class="bg-luxury-900">Penthouse</option>
-            </select>
-          </div>
-        </div>
-        <button onclick="heroSearch()" class="w-full bg-gold-500 text-luxury-900 text-xs font-bold uppercase tracking-wider h-12 rounded-xl hover:bg-gold-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(200,169,126,0.3)] transition-all duration-300 flex items-center justify-center gap-2">
-          <iconify-icon icon="lucide:search" width="14"></iconify-icon> Search Rooms
-        </button>
-        <p id="hero-error" class="text-xs text-red-400 mt-2 hidden"></p>
-      </div>
-    </div>
-  </div>
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 anim-fiu d6 flex flex-col items-center gap-2">
-    <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-white/20">Scroll</span>
-    <div class="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1">
-      <div class="w-1 h-2 rounded-full bg-gold-400" style="animation:fade-in-up 1.5s ease-in-out infinite"></div>
-    </div>
-  </div>
 </section>
 
-<!-- Marquee -->
-<div class="py-5 bg-luxury-900 border-y border-white/5 overflow-hidden">
-  <div class="flex whitespace-nowrap" style="animation:marquee 30s linear infinite">
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Five-Star Excellence</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ World-Class Spa</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Michelin Dining</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Infinity Pool</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Rooftop Bar</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Private Beach</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Concierge 24/7</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Five-Star Excellence</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ World-Class Spa</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Michelin Dining</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Infinity Pool</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Rooftop Bar</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Private Beach</span>
-    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/15 mx-8">★ Concierge 24/7</span>
-  </div>
-</div>
-
-<!-- Experience -->
-<section id="experience" class="py-24 lg:py-40 relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-b from-luxury-950 via-luxury-900 to-luxury-950"></div>
-  <div class="absolute top-0 left-0 right-0 gold-line opacity-30"></div>
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
-    <div class="reveal grid lg:grid-cols-2 gap-16 items-center">
-      <div>
-        <div class="flex items-center gap-3 mb-6"><div class="gold-line w-12"></div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">The Experience</span></div>
-        <h2 class="text-3xl lg:text-5xl font-serif font-medium tracking-tight leading-[1.1] mb-8">A world apart,<br><em class="text-gold-400 italic">yet close</em> to everything</h2>
-        <p class="text-white/40 leading-relaxed mb-10 max-w-md font-light">Nestled in the heart of the city, The Grandeur offers an oasis of tranquility. Every corner tells a story of craftsmanship.</p>
-        <div class="grid grid-cols-2 gap-6 mb-10">
-          <div class="glass-light rounded-xl p-5"><div class="text-2xl font-serif font-semibold gold-text mb-1">238</div><div class="text-[10px] uppercase tracking-wider text-white/30">Luxury Rooms</div></div>
-          <div class="glass-light rounded-xl p-5"><div class="text-2xl font-serif font-semibold gold-text mb-1">12</div><div class="text-[10px] uppercase tracking-wider text-white/30">Suites & Penthouses</div></div>
-          <div class="glass-light rounded-xl p-5"><div class="text-2xl font-serif font-semibold gold-text mb-1">5</div><div class="text-[10px] uppercase tracking-wider text-white/30">Restaurants & Bars</div></div>
-          <div class="glass-light rounded-xl p-5"><div class="text-2xl font-serif font-semibold gold-text mb-1">3</div><div class="text-[10px] uppercase tracking-wider text-white/30">Pool Terraces</div></div>
+<!-- ROOMS -->
+<section id="rooms" class="section-solid py-32 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="reveal"><div class="gold-line mx-auto mb-6"></div></div>
+            <p class="reveal rd1 text-gold text-xs tracking-[.3em] uppercase mb-4">Accommodations</p>
+            <h2 class="reveal rd2 font-display text-cream" style="font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300">Rooms & Suites</h2>
+            <p class="reveal rd3 text-muted max-w-lg mx-auto text-sm mt-4">Each room is a masterpiece of design, blending contemporary luxury with timeless elegance.</p>
         </div>
-        <button onclick="openBookingModal('suite')" class="group text-xs font-bold uppercase tracking-wider text-gold-400 flex items-center gap-3 hover:gap-4 transition-all duration-300">Discover More <iconify-icon icon="lucide:arrow-right" width="14" class="transition-transform duration-300 group-hover:translate-x-1"></iconify-icon></button>
-      </div>
-      <div class="relative">
-        <div class="relative rounded-2xl overflow-hidden gold-border gold-glow">
-          <video autoplay muted loop playsinline poster="https://picsum.photos/seed/luxury-pool-cinematic/800/500.jpg" class="w-full aspect-video">
-            <source src="https://videos.pexels.com/video-files/1093662/1093662-hd_1920_1080_30fps.mp4" type="video/mp4">
-          </video>
-          <div class="absolute inset-0 bg-gradient-to-t from-luxury-950/60 via-transparent to-transparent"></div>
-          <div class="absolute bottom-6 left-6 right-6">
-            <div class="text-[10px] font-bold uppercase tracking-widest text-gold-400 mb-1">Featured</div>
-            <div class="text-lg font-serif font-medium">Infinity Pool & Terrace</div>
-            <div class="text-xs text-white/40 mt-1">Panoramic city views from the 30th floor</div>
-          </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
+            <div class="room-card reveal rd1" onclick="openRoomModal(0)">
+                <div class="overflow-hidden"><img src="https://picsum.photos/seed/tgroom1/600/500.jpg" alt="Premium Standard" class="room-img" loading="lazy"></div>
+                <div class="p-6 relative" style="z-index:2">
+                    <p class="text-gold text-xs tracking-[.15em] uppercase mb-1">Standard</p>
+                    <h3 class="font-display text-cream text-xl mb-2" style="font-weight:400">Premium Standard</h3>
+                    <p class="text-muted text-xs leading-relaxed mb-4">35sqm of refined comfort with city views and premium amenities.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-display text-gold text-lg" style="font-weight:400">$180<span class="text-muted text-xs">/night</span></span>
+                        <button class="btn-gold btn-sm" onclick="event.stopPropagation();openBooking()">Book</button>
+                    </div>
+                </div>
+            </div>
+            <div class="room-card reveal rd2" onclick="openRoomModal(1)">
+                <div class="overflow-hidden"><img src="https://picsum.photos/seed/tgroom2/600/500.jpg" alt="Garden View" class="room-img" loading="lazy"></div>
+                <div class="p-6 relative" style="z-index:2">
+                    <div class="absolute top-6 right-6 bg-gold text-dark text-xs font-bold px-2.5 py-1 rounded tracking-wider" style="z-index:3">POPULAR</div>
+                    <p class="text-gold text-xs tracking-[.15em] uppercase mb-1">Deluxe</p>
+                    <h3 class="font-display text-cream text-xl mb-2" style="font-weight:400">Garden View</h3>
+                    <p class="text-muted text-xs leading-relaxed mb-4">48sqm with private balcony, lush garden views, and soaking tub.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-display text-gold text-lg" style="font-weight:400">$240<span class="text-muted text-xs">/night</span></span>
+                        <button class="btn-gold btn-sm" onclick="event.stopPropagation();openBooking()">Book</button>
+                    </div>
+                </div>
+            </div>
+            <div class="room-card reveal rd3" onclick="openRoomModal(2)">
+                <div class="overflow-hidden"><img src="https://picsum.photos/seed/tgroom3/600/500.jpg" alt="Heritage Deluxe" class="room-img" loading="lazy"></div>
+                <div class="p-6 relative" style="z-index:2">
+                    <p class="text-gold text-xs tracking-[.15em] uppercase mb-1">Executive</p>
+                    <h3 class="font-display text-cream text-xl mb-2" style="font-weight:400">Heritage Deluxe</h3>
+                    <p class="text-muted text-xs leading-relaxed mb-4">62sqm executive suite with separate living area and butler service.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-display text-gold text-lg" style="font-weight:400">$320<span class="text-muted text-xs">/night</span></span>
+                        <button class="btn-gold btn-sm" onclick="event.stopPropagation();openBooking()">Book</button>
+                    </div>
+                </div>
+            </div>
+            <div class="room-card reveal rd4" onclick="openRoomModal(3)">
+                <div class="overflow-hidden"><img src="https://picsum.photos/seed/tgroom4/600/500.jpg" alt="Royal Suite" class="room-img" loading="lazy"></div>
+                <div class="p-6 relative" style="z-index:2">
+                    <div class="absolute top-6 right-6 border border-gold text-gold text-xs font-bold px-2.5 py-1 rounded tracking-wider" style="z-index:3">SIGNATURE</div>
+                    <p class="text-gold text-xs tracking-[.15em] uppercase mb-1">Suite</p>
+                    <h3 class="font-display text-cream text-xl mb-2" style="font-weight:400">Royal Suite</h3>
+                    <p class="text-muted text-xs leading-relaxed mb-4">95sqm pinnacle of luxury with panoramic views, private terrace, jacuzzi.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-display text-gold text-lg" style="font-weight:400">$450<span class="text-muted text-xs">/night</span></span>
+                        <button class="btn-gold btn-sm" onclick="event.stopPropagation();openBooking()">Book</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="absolute -top-4 -right-4 glass rounded-xl p-4 gold-glow" style="animation:float 5s ease-in-out infinite 1s">
-          <div class="flex items-center gap-2"><iconify-icon icon="lucide:award" width="18" class="text-gold-400"></iconify-icon><div><div class="text-xs font-bold text-white">Best Hotel 2025</div><div class="text-[9px] text-white/30">Luxury Travel Awards</div></div></div>
+    </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities" class="section-fade py-32 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="reveal"><div class="gold-line mx-auto mb-6"></div></div>
+            <p class="reveal rd1 text-gold text-xs tracking-[.3em] uppercase mb-4">World-Class Facilities</p>
+            <h2 class="reveal rd2 font-display text-cream" style="font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300">Hotel Amenities</h2>
         </div>
-      </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="amenity-card reveal rd1">
+                <i class="fa-solid fa-water-ladder amen-icon block mb-5"></i>
+                <h3 class="text-cream font-semibold text-sm mb-2">Infinity Pool</h3>
+                <p class="text-muted text-xs leading-relaxed">Rooftop infinity pool with panoramic city views, heated year-round with poolside bar service.</p>
+            </div>
+            <div class="amenity-card reveal rd2">
+                <i class="fa-solid fa-spa amen-icon block mb-5"></i>
+                <h3 class="text-cream font-semibold text-sm mb-2">Luxury Spa</h3>
+                <p class="text-muted text-xs leading-relaxed">Full-service spa with hammam, sauna, and bespoke treatments using organic products.</p>
+            </div>
+            <div class="amenity-card reveal rd3">
+                <i class="fa-solid fa-dumbbell amen-icon block mb-5"></i>
+                <h3 class="text-cream font-semibold text-sm mb-2">Fitness Center</h3>
+                <p class="text-muted text-xs leading-relaxed">State-of-the-art gym with personal trainers, yoga studio, and wellness programs.</p>
+            </div>
+            <div class="amenity-card reveal rd4">
+                <i class="fa-solid fa-car amen-icon block mb-5"></i>
+                <h3 class="text-cream font-semibold text-sm mb-2">Valet Parking</h3>
+                <p class="text-muted text-xs leading-relaxed">Complimentary valet parking with secure underground facility and EV charging stations.</p>
+            </div>
+            <div class="amenity-card reveal rd5">
+                <i class="fa-solid fa-wifi amen-icon block mb-5"></i>
+                <h3 class="text-cream font-semibold text-sm mb-2">High-Speed WiFi</h3>
+                <p class="text-muted text-xs leading-relaxed">Complimentary ultra-fast fiber internet throughout the property, including all rooms.</p>
+            </div>
+            <div class="amenity-card reveal rd6">
+                <i class="fa-solid fa-bell-concierge amen-icon block mb-5"></i>
+                <h3 class="text-cream font-semibold text-sm mb-2">24/7 Concierge</h3>
+                <p class="text-muted text-xs leading-relaxed">Round-the-clock concierge for reservations, tours, transportation, and special requests.</p>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- Rooms -->
-<section id="rooms" class="py-24 lg:py-40 relative">
-  <div class="absolute inset-0 bg-luxury-950"></div>
-  <div class="absolute top-0 left-0 right-0 gold-line opacity-20"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gold-500/3 blur-[150px]"></div>
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
-    <div class="reveal text-center mb-20">
-      <div class="flex items-center justify-center gap-3 mb-6"><div class="gold-line w-12"></div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">Accommodations</span><div class="gold-line w-12"></div></div>
-      <h2 class="text-3xl lg:text-5xl font-serif font-medium tracking-tight mb-4">Rooms & Suites</h2>
-      <p class="text-white/40 max-w-md mx-auto font-light">Each space is a masterpiece of design, offering panoramic views and bespoke amenities.</p>
+<!-- DINING -->
+<section id="dining" class="section-warm py-32 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="reveal"><div class="gold-line mx-auto mb-6"></div></div>
+            <p class="reveal rd1 text-gold text-xs tracking-[.3em] uppercase mb-4">Culinary Excellence</p>
+            <h2 class="reveal rd2 font-display text-cream" style="font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300">Dining Experience</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="dine-card reveal rd1" onclick="showToast('Table reservation for The Grand Restaurant confirmed!','gold')">
+                <img src="https://picsum.photos/seed/tgdine1/700/800.jpg" alt="The Grand Restaurant" loading="lazy">
+                <div class="dine-overlay">
+                    <p class="text-gold text-xs tracking-[.15em] uppercase mb-1">Fine Dining</p>
+                    <h3 class="font-display text-cream text-2xl mb-2" style="font-weight:400">The Grand Restaurant</h3>
+                    <p class="text-muted text-xs leading-relaxed mb-3">International cuisine crafted by our Michelin-starred chef with locally sourced ingredients.</p>
+                    <span class="text-gold text-xs tracking-wider uppercase">Reserve a Table <i class="fa-solid fa-arrow-right text-xs ml-1"></i></span>
+                </div>
+            </div>
+            <div class="dine-card reveal rd2" onclick="showToast('Table reservation for Rooftop Lounge confirmed!','gold')">
+                <img src="https://picsum.photos/seed/tgdine2/700/800.jpg" alt="Rooftop Lounge" loading="lazy">
+                <div class="dine-overlay">
+                    <p class="text-gold text-xs tracking-[.15em] uppercase mb-1">Bar & Lounge</p>
+                    <h3 class="font-display text-cream text-2xl mb-2" style="font-weight:400">Skyline Rooftop Bar</h3>
+                    <p class="text-muted text-xs leading-relaxed mb-3">Craft cocktails and tapas under the stars with breathtaking 360-degree city views.</p>
+                    <span class="text-gold text-xs tracking-wider uppercase">Reserve a Table <i class="fa-solid fa-arrow-right text-xs ml-1"></i></span>
+                </div>
+            </div>
+            <div class="dine-card reveal rd3" onclick="showToast('Table reservation for Garden Cafe confirmed!','gold')">
+                <img src="https://picsum.photos/seed/tgdine3/700/800.jpg" alt="Garden Cafe" loading="lazy">
+                <div class="dine-overlay">
+                    <p class="text-gold text-xs tracking-[.15em] uppercase mb-1">Casual Dining</p>
+                    <h3 class="font-display text-cream text-2xl mb-2" style="font-weight:400">The Garden Cafe</h3>
+                    <p class="text-muted text-xs leading-relaxed mb-3">All-day dining in our lush courtyard garden, serving artisan coffee and fresh pastries.</p>
+                    <span class="text-gold text-xs tracking-wider uppercase">Reserve a Table <i class="fa-solid fa-arrow-right text-xs ml-1"></i></span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="rooms-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-  </div>
 </section>
 
-<!-- Video Divider -->
-<section class="relative h-[50vh] lg:h-[60vh] overflow-hidden">
-  <video autoplay muted loop playsinline poster="https://picsum.photos/seed/luxury-lobby-cinematic/1920/800.jpg" class="w-full h-full">
-    <source src="https://videos.pexels.com/video-files/856974/856974-hd_1920_1080_30fps.mp4" type="video/mp4">
-  </video>
-  <div class="absolute inset-0 bg-luxury-950/50"></div>
-  <div class="absolute inset-0 flex items-center justify-center">
-    <div class="text-center">
-      <div class="text-[10px] font-bold uppercase tracking-[0.3em] text-gold-400 mb-4">Cinematic Experience</div>
-      <h2 class="text-4xl lg:text-6xl font-serif font-medium tracking-tight gold-text mb-6">Feel the Grandeur</h2>
-      <button onclick="openBookingModal('deluxe')" class="bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-bold uppercase tracking-wider h-12 px-8 rounded-full hover:bg-gold-500 hover:text-luxury-900 hover:border-gold-500 hover:-translate-y-1 transition-all duration-300">Book Your Experience</button>
+<!-- GALLERY -->
+<section id="gallery" class="section-solid py-32 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="reveal"><div class="gold-line mx-auto mb-6"></div></div>
+            <p class="reveal rd1 text-gold text-xs tracking-[.3em] uppercase mb-4">Visual Journey</p>
+            <h2 class="reveal rd2 font-display text-cream" style="font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300">Our Gallery</h2>
+        </div>
+        <div class="gallery-grid reveal rd2">
+            <div class="gi" onclick="showToast('Full gallery view coming soon.','default')"><img src="https://picsum.photos/seed/tggal1/900/700.jpg" alt="Lobby" loading="lazy"></div>
+            <div class="gi" onclick="showToast('Full gallery view coming soon.','default')"><img src="https://picsum.photos/seed/tggal2/500/400.jpg" alt="Pool" loading="lazy"></div>
+            <div class="gi" onclick="showToast('Full gallery view coming soon.','default')"><img src="https://picsum.photos/seed/tggal3/500/400.jpg" alt="Suite" loading="lazy"></div>
+            <div class="gi" onclick="showToast('Full gallery view coming soon.','default')"><img src="https://picsum.photos/seed/tggal4/500/400.jpg" alt="Spa" loading="lazy"></div>
+            <div class="gi" onclick="showToast('Full gallery view coming soon.','default')"><img src="https://picsum.photos/seed/tggal5/500/400.jpg" alt="Dining" loading="lazy"></div>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- Amenities -->
-<section id="amenities" class="py-24 lg:py-40 relative">
-  <div class="absolute inset-0 bg-gradient-to-b from-luxury-950 via-luxury-900 to-luxury-950"></div>
-  <div class="absolute top-0 left-0 right-0 gold-line opacity-20"></div>
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
-    <div class="reveal text-center mb-20">
-      <div class="flex items-center justify-center gap-3 mb-6"><div class="gold-line w-12"></div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">Exclusive Services</span><div class="gold-line w-12"></div></div>
-      <h2 class="text-3xl lg:text-5xl font-serif font-medium tracking-tight mb-4">World-Class Amenities</h2>
-      <p class="text-white/40 max-w-md mx-auto font-light">Hover to discover each offering — curated for the extraordinary.</p>
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section-fade py-32 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="reveal"><div class="gold-line mx-auto mb-6"></div></div>
+            <p class="reveal rd1 text-gold text-xs tracking-[.3em] uppercase mb-4">Guest Voices</p>
+            <h2 class="reveal rd2 font-display text-cream" style="font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300">What Our Guests Say</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-7">
+            <div class="test-card reveal rd1">
+                <div class="test-quote">"</div>
+                <div class="star-rating mb-4 mt-6"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-cream text-sm leading-relaxed mb-6">An absolutely phenomenal experience. From the moment we arrived, every detail was perfect. The Royal Suite exceeded all expectations — the view alone was worth the stay.</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-dark-border flex items-center justify-center text-gold text-sm font-semibold">SA</div>
+                    <div><p class="text-cream text-sm font-medium">Sarah Ahmed</p><p class="text-muted text-xs">Dubai, UAE</p></div>
+                </div>
+            </div>
+            <div class="test-card reveal rd2">
+                <div class="test-quote">"</div>
+                <div class="star-rating mb-4 mt-6"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-cream text-sm leading-relaxed mb-6">The finest hotel I've stayed in across Asia. The spa was transformative, the dining was Michelin-worthy, and the staff anticipated every need before I could ask. Truly world-class.</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-dark-border flex items-center justify-center text-gold text-sm font-semibold">JK</div>
+                    <div><p class="text-cream text-sm font-medium">James Kensington</p><p class="text-muted text-xs">London, UK</p></div>
+                </div>
+            </div>
+            <div class="test-card reveal rd3">
+                <div class="test-quote">"</div>
+                <div class="star-rating mb-4 mt-6"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                <p class="text-cream text-sm leading-relaxed mb-6">We hosted our wedding reception at TG Grand and it was magical. The event team handled everything flawlessly. Our guests are still talking about the rooftop venue and the food.</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-dark-border flex items-center justify-center text-gold text-sm font-semibold">FK</div>
+                    <div><p class="text-cream text-sm font-medium">Fatima Khan</p><p class="text-muted text-xs">Lahore, Pakistan</p></div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="reveal grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-      <div class="flip-card h-52 cursor-pointer"><div class="flip-card-inner relative w-full h-full">
-        <div class="flip-card-front absolute inset-0 glass-light rounded-2xl flex flex-col items-center justify-center gap-3"><div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center"><iconify-icon icon="lucide:waves" width="26" class="text-blue-400"></iconify-icon></div><span class="text-xs font-semibold text-white/80">Infinity Pool</span></div>
-        <div class="flip-card-back absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-900/80 to-blue-950/80 backdrop-blur-xl border border-blue-500/20 flex flex-col items-center justify-center p-4 text-center"><iconify-icon icon="lucide:waves" width="20" class="text-blue-400 mb-2"></iconify-icon><span class="text-[10px] font-bold uppercase tracking-wider text-blue-300 mb-1">30th Floor</span><span class="text-xs text-white/60 leading-relaxed">Heated pool with panoramic city views</span></div>
-      </div></div>
-      <div class="flip-card h-52 cursor-pointer"><div class="flip-card-inner relative w-full h-full">
-        <div class="flip-card-front absolute inset-0 glass-light rounded-2xl flex flex-col items-center justify-center gap-3"><div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center"><iconify-icon icon="lucide:sparkles" width="26" class="text-purple-400"></iconify-icon></div><span class="text-xs font-semibold text-white/80">Luxury Spa</span></div>
-        <div class="flip-card-back absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-900/80 to-purple-950/80 backdrop-blur-xl border border-purple-500/20 flex flex-col items-center justify-center p-4 text-center"><iconify-icon icon="lucide:sparkles" width="20" class="text-purple-400 mb-2"></iconify-icon><span class="text-[10px] font-bold uppercase tracking-wider text-purple-300 mb-1">From $80</span><span class="text-xs text-white/60 leading-relaxed">Full-service spa with sauna & steam</span></div>
-      </div></div>
-      <div class="flip-card h-52 cursor-pointer"><div class="flip-card-inner relative w-full h-full">
-        <div class="flip-card-front absolute inset-0 glass-light rounded-2xl flex flex-col items-center justify-center gap-3"><div class="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center"><iconify-icon icon="lucide:utensils" width="26" class="text-amber-400"></iconify-icon></div><span class="text-xs font-semibold text-white/80">Fine Dining</span></div>
-        <div class="flip-card-back absolute inset-0 rounded-2xl bg-gradient-to-br from-amber-900/80 to-amber-950/80 backdrop-blur-xl border border-amber-500/20 flex flex-col items-center justify-center p-4 text-center"><iconify-icon icon="lucide:utensils" width="20" class="text-amber-400 mb-2"></iconify-icon><span class="text-[10px] font-bold uppercase tracking-wider text-amber-300 mb-1">Michelin Star</span><span class="text-xs text-white/60 leading-relaxed">5 restaurants, 2 bars, live jazz</span></div>
-      </div></div>
-      <div class="flip-card h-52 cursor-pointer"><div class="flip-card-inner relative w-full h-full">
-        <div class="flip-card-front absolute inset-0 glass-light rounded-2xl flex flex-col items-center justify-center gap-3"><div class="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center"><iconify-icon icon="lucide:dumbbell" width="26" class="text-green-400"></iconify-icon></div><span class="text-xs font-semibold text-white/80">Fitness</span></div>
-        <div class="flip-card-back absolute inset-0 rounded-2xl bg-gradient-to-br from-green-900/80 to-green-950/80 backdrop-blur-xl border border-green-500/20 flex flex-col items-center justify-center p-4 text-center"><iconify-icon icon="lucide:dumbbell" width="20" class="text-green-400 mb-2"></iconify-icon><span class="text-[10px] font-bold uppercase tracking-wider text-green-300 mb-1">24/7 Access</span><span class="text-xs text-white/60 leading-relaxed">State-of-the-art equipment & yoga</span></div>
-      </div></div>
-      <div class="flip-card h-52 cursor-pointer"><div class="flip-card-inner relative w-full h-full">
-        <div class="flip-card-front absolute inset-0 glass-light rounded-2xl flex flex-col items-center justify-center gap-3"><div class="w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center"><iconify-icon icon="lucide:wifi" width="26" class="text-cyan-400"></iconify-icon></div><span class="text-xs font-semibold text-white/80">Free WiFi</span></div>
-        <div class="flip-card-back absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-900/80 to-cyan-950/80 backdrop-blur-xl border border-cyan-500/20 flex flex-col items-center justify-center p-4 text-center"><iconify-icon icon="lucide:wifi" width="20" class="text-cyan-400 mb-2"></iconify-icon><span class="text-[10px] font-bold uppercase tracking-wider text-cyan-300 mb-1">Gigabit</span><span class="text-xs text-white/60 leading-relaxed">High-speed fiber in all spaces</span></div>
-      </div></div>
-      <div class="flip-card h-52 cursor-pointer"><div class="flip-card-inner relative w-full h-full">
-        <div class="flip-card-front absolute inset-0 glass-light rounded-2xl flex flex-col items-center justify-center gap-3"><div class="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center"><iconify-icon icon="lucide:car" width="26" class="text-rose-400"></iconify-icon></div><span class="text-xs font-semibold text-white/80">Valet</span></div>
-        <div class="flip-card-back absolute inset-0 rounded-2xl bg-gradient-to-br from-rose-900/80 to-rose-950/80 backdrop-blur-xl border border-rose-500/20 flex flex-col items-center justify-center p-4 text-center"><iconify-icon icon="lucide:car" width="20" class="text-rose-400 mb-2"></iconify-icon><span class="text-[10px] font-bold uppercase tracking-wider text-rose-300 mb-1">$25/Night</span><span class="text-xs text-white/60 leading-relaxed">EV charging & airport transfers</span></div>
-      </div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Gallery -->
-<section id="gallery" class="py-24 lg:py-40 relative">
-  <div class="absolute inset-0 bg-luxury-950"></div>
-  <div class="absolute top-0 left-0 right-0 gold-line opacity-20"></div>
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
-    <div class="reveal text-center mb-20">
-      <div class="flex items-center justify-center gap-3 mb-6"><div class="gold-line w-12"></div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">Visual Journey</span><div class="gold-line w-12"></div></div>
-      <h2 class="text-3xl lg:text-5xl font-serif font-medium tracking-tight">Gallery</h2>
-    </div>
-    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-3 h-auto md:h-[550px]">
-      <button onclick="openLightbox(0)" class="col-span-2 row-span-2 relative overflow-hidden rounded-2xl group cursor-pointer"><img src="https://picsum.photos/seed/luxury-grand-lobby/800/800.jpg" alt="Lobby" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"><div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div><div class="absolute bottom-6 left-6"><div class="text-[10px] font-bold uppercase tracking-widest text-gold-400 mb-1">Grand Lobby</div><div class="text-sm font-serif text-white/80">Crystal chandeliers</div></div><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"><iconify-icon icon="lucide:zoom-in" width="22" class="text-white"></iconify-icon></div></div></button>
-      <button onclick="openLightbox(1)" class="relative overflow-hidden rounded-2xl group cursor-pointer"><img src="https://picsum.photos/seed/luxury-suite-night/400/400.jpg" alt="Suite" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><iconify-icon icon="lucide:zoom-in" width="20" class="text-white"></iconify-icon></div></button>
-      <button onclick="openLightbox(2)" class="relative overflow-hidden rounded-2xl group cursor-pointer"><img src="https://picsum.photos/seed/luxury-dining-gold/400/400.jpg" alt="Dining" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><iconify-icon icon="lucide:zoom-in" width="20" class="text-white"></iconify-icon></div></button>
-      <button onclick="openLightbox(3)" class="relative overflow-hidden rounded-2xl group cursor-pointer"><img src="https://picsum.photos/seed/luxury-spa-candle/400/400.jpg" alt="Spa" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><iconify-icon icon="lucide:zoom-in" width="20" class="text-white"></iconify-icon></div></button>
-      <button onclick="openLightbox(4)" class="relative overflow-hidden rounded-2xl group cursor-pointer"><img src="https://picsum.photos/seed/luxury-rooftop-night/400/400.jpg" alt="Rooftop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"><iconify-icon icon="lucide:zoom-in" width="20" class="text-white"></iconify-icon></div></button>
-    </div>
-  </div>
-</section>
-
-<!-- Reviews -->
-<section id="reviews" class="py-24 lg:py-40 relative">
-  <div class="absolute inset-0 bg-gradient-to-b from-luxury-950 via-luxury-900 to-luxury-950"></div>
-  <div class="absolute top-0 left-0 right-0 gold-line opacity-20"></div>
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
-    <div class="reveal text-center mb-20">
-      <div class="flex items-center justify-center gap-3 mb-6"><div class="gold-line w-12"></div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">Testimonials</span><div class="gold-line w-12"></div></div>
-      <h2 class="text-3xl lg:text-5xl font-serif font-medium tracking-tight">Guest Voices</h2>
-    </div>
-    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="glass-light rounded-2xl p-8 hover:-translate-y-1 hover:gold-glow transition-all duration-500 gold-border">
-        <div class="flex items-center gap-1 mb-5"><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon></div>
-        <p class="text-sm text-white/50 leading-relaxed mb-6 italic font-light">"The most extraordinary hotel I've ever experienced. The penthouse suite took my breath away."</p>
-        <div class="flex items-center gap-3"><img src="https://picsum.photos/seed/guest-elegant-1/48/48.jpg" alt="" class="w-10 h-10 rounded-full object-cover ring-1 ring-gold-500/30"><div><div class="text-sm font-semibold text-white/90">Sarah Mitchell</div><div class="text-[10px] text-gold-400/60 uppercase tracking-wider">CEO, Morgan & Co</div></div></div>
-      </div>
-      <div class="glass-light rounded-2xl p-8 hover:-translate-y-1 hover:gold-glow transition-all duration-500 gold-border">
-        <div class="flex items-center gap-1 mb-5"><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon></div>
-        <p class="text-sm text-white/50 leading-relaxed mb-6 italic font-light">"Our honeymoon was magical. The private rooftop dinner under the stars was unforgettable."</p>
-        <div class="flex items-center gap-3"><img src="https://picsum.photos/seed/guest-elegant-2/48/48.jpg" alt="" class="w-10 h-10 rounded-full object-cover ring-1 ring-gold-500/30"><div><div class="text-sm font-semibold text-white/90">James & Emily Park</div><div class="text-[10px] text-gold-400/60 uppercase tracking-wider">Honeymoon Guests</div></div></div>
-      </div>
-      <div class="glass-light rounded-2xl p-8 hover:-translate-y-1 hover:gold-glow transition-all duration-500 gold-border">
-        <div class="flex items-center gap-1 mb-5"><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="13" class="text-gold-400"></iconify-icon></div>
-        <p class="text-sm text-white/50 leading-relaxed mb-6 italic font-light">"Having stayed at the finest hotels worldwide, The Grandeur stands among the top three."</p>
-        <div class="flex items-center gap-3"><img src="https://picsum.photos/seed/guest-elegant-3/48/48.jpg" alt="" class="w-10 h-10 rounded-full object-cover ring-1 ring-gold-500/30"><div><div class="text-sm font-semibold text-white/90">Akira Tanaka</div><div class="text-[10px] text-gold-400/60 uppercase tracking-wider">Travel Editor</div></div></div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- CTA -->
-<section class="relative py-32 lg:py-40 overflow-hidden">
-  <video autoplay muted loop playsinline poster="https://picsum.photos/seed/luxury-sunset-ocean/1920/800.jpg" class="absolute inset-0 w-full h-full">
-    <source src="https://videos.pexels.com/video-files/857251/857251-hd_1920_1080_25fps.mp4" type="video/mp4">
-  </video>
-  <div class="absolute inset-0 bg-luxury-950/70"></div>
-  <div class="absolute inset-0 bg-gradient-to-r from-luxury-950/80 to-transparent"></div>
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
-    <div class="reveal max-w-xl">
-      <div class="flex items-center gap-3 mb-6"><div class="gold-line w-12"></div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">Your Story Awaits</span></div>
-      <h2 class="text-4xl lg:text-6xl font-serif font-medium tracking-tight leading-[1.05] mb-8">Ready to step into<br><em class="text-gold-400 italic">extraordinary?</em></h2>
-      <p class="text-white/40 text-lg font-light leading-relaxed mb-10 max-w-md">Every stay at The Grandeur becomes a cherished memory. Begin yours today.</p>
-      <div class="flex flex-wrap gap-4">
-        <button onclick="openBookingModal('penthouse')" class="group bg-gold-500 text-luxury-900 text-xs font-bold uppercase tracking-wider h-13 px-10 rounded-full hover:bg-gold-400 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(200,169,126,0.35)] transition-all duration-300 flex items-center gap-3 py-3.5">Reserve Now <iconify-icon icon="lucide:arrow-right" width="14" class="transition-transform duration-300 group-hover:translate-x-1"></iconify-icon></button>
-        <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="border border-white/20 text-white text-xs font-bold uppercase tracking-wider h-13 px-10 rounded-full hover:border-gold-500/50 hover:text-gold-400 transition-all duration-300 py-3.5">Contact Concierge</button>
-      </div>
+<section id="contact" class="section-solid relative py-32 px-6 md:px-16 lg:px-24 overflow-hidden">
+    <div class="cta-glow" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+    <div class="max-w-4xl mx-auto text-center relative" style="z-index:2">
+        <div class="reveal"><div class="gold-line mx-auto mb-6"></div></div>
+        <h2 class="reveal rd1 font-display text-cream mb-4" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:300;line-height:1.05">Begin Your<br>Extraordinary Stay</h2>
+        <p class="reveal rd2 text-muted max-w-lg mx-auto text-sm leading-relaxed mb-10">Whether for business or leisure, TG Grand promises an experience that stays with you long after check-out. Book now or contact our concierge for a tailored package.</p>
+        <div class="reveal rd3 flex flex-wrap items-center justify-center gap-4 mb-14">
+            <button class="btn-gold" onclick="openBooking()">Book Your Stay <i class="fa-solid fa-arrow-right text-xs"></i></button>
+            <button class="btn-outline" onclick="showToast('Our concierge will call you within 30 minutes.','gold')">Request a Call Back</button>
+        </div>
+        <div class="reveal rd4 max-w-md mx-auto">
+            <p class="text-cream text-sm font-medium mb-3">Get Exclusive Offers</p>
+            <form class="flex gap-3" onsubmit="handleNewsletter(event)">
+                <input type="email" class="form-input flex-1" placeholder="Enter your email address" required aria-label="Email">
+                <button type="submit" class="btn-gold btn-sm whitespace-nowrap">Subscribe</button>
+            </form>
+            <p class="text-muted text-xs mt-3">Join 12,000+ subscribers. Unsubscribe anytime.</p>
+        </div>
+        <div class="reveal rd5 flex flex-wrap items-center justify-center gap-8 mt-16 pt-10 border-t border-dark-border">
+            <div class="flex items-center gap-2 text-muted text-xs"><i class="fa-solid fa-location-dot text-gold"></i> 123 Grand Avenue, City Center</div>
+            <div class="flex items-center gap-2 text-muted text-xs"><i class="fa-solid fa-phone text-gold"></i> +92 300 1234567</div>
+            <div class="flex items-center gap-2 text-muted text-xs"><i class="fa-solid fa-envelope text-gold"></i> stay@tggrand.com</div>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- Contact -->
-<section id="contact" class="py-24 lg:py-40 relative">
-  <div class="absolute inset-0 bg-luxury-950"></div>
-  <div class="absolute top-0 left-0 right-0 gold-line opacity-20"></div>
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
-    <div class="reveal grid lg:grid-cols-2 gap-16">
-      <div>
-        <div class="flex items-center gap-3 mb-6"><div class="gold-line w-12"></div><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">Reach Out</span></div>
-        <h2 class="text-3xl lg:text-5xl font-serif font-medium tracking-tight mb-6">Contact Our<br><em class="text-gold-400 italic">Concierge</em></h2>
-        <p class="text-white/40 leading-relaxed mb-12 max-w-md font-light">Available around the clock to curate your perfect experience. No request is too extraordinary.</p>
-        <div class="space-y-8">
-          <div class="flex items-start gap-5"><div class="w-12 h-12 rounded-2xl glass-light flex items-center justify-center flex-shrink-0"><iconify-icon icon="lucide:map-pin" width="18" class="text-gold-400"></iconify-icon></div><div><div class="text-sm font-semibold text-white/90 mb-1">Address</div><div class="text-sm text-white/40 font-light">123 Grand Boulevard, Downtown, New York, NY 10001</div></div></div>
-          <div class="flex items-start gap-5"><div class="w-12 h-12 rounded-2xl glass-light flex items-center justify-center flex-shrink-0"><iconify-icon icon="lucide:phone" width="18" class="text-gold-400"></iconify-icon></div><div><div class="text-sm font-semibold text-white/90 mb-1">Phone</div><div class="text-sm text-white/40 font-light">+1 (555) 123-4567</div></div></div>
-          <div class="flex items-start gap-5"><div class="w-12 h-12 rounded-2xl glass-light flex items-center justify-center flex-shrink-0"><iconify-icon icon="lucide:mail" width="18" class="text-gold-400"></iconify-icon></div><div><div class="text-sm font-semibold text-white/90 mb-1">Email</div><div class="text-sm text-white/40 font-light">farazbaloch0707@gmail.com</div></div></div>
+<!-- FOOTER -->
+<footer class="section-solid border-t border-dark-border pt-16 pb-8 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-14">
+            <div class="lg:col-span-2">
+                <a href="#" class="font-display text-gold text-xl tracking-[.25em] no-underline" style="font-weight:300">TG GRAND</a>
+                <p class="text-muted text-xs leading-relaxed mt-4 max-w-xs">A sanctuary of luxury and sophistication. Where every moment is crafted to perfection and every stay becomes an unforgettable story.</p>
+                <div class="flex gap-5 mt-6">
+                    <a href="#" onclick="event.preventDefault();showToast('Opening Instagram...','default')" class="w-9 h-9 rounded-full border border-dark-border flex items-center justify-center text-muted hover:text-gold hover:border-gold transition-all text-sm" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" onclick="event.preventDefault();showToast('Opening Facebook...','default')" class="w-9 h-9 rounded-full border border-dark-border flex items-center justify-center text-muted hover:text-gold hover:border-gold transition-all text-sm" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" onclick="event.preventDefault();showToast('Opening TikTok...','default')" class="w-9 h-9 rounded-full border border-dark-border flex items-center justify-center text-muted hover:text-gold hover:border-gold transition-all text-sm" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" onclick="event.preventDefault();showToast('Opening YouTube...','default')" class="w-9 h-9 rounded-full border border-dark-border flex items-center justify-center text-muted hover:text-gold hover:border-gold transition-all text-sm" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" onclick="event.preventDefault();showToast('Opening WhatsApp...','default')" class="w-9 h-9 rounded-full border border-dark-border flex items-center justify-center text-muted hover:text-gold hover:border-gold transition-all text-sm" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-cream text-xs tracking-[.15em] uppercase font-semibold mb-5">Hotel</h4>
+                <ul class="space-y-3">
+                    <li><a href="#about" class="text-muted text-sm hover:text-gold transition-colors no-underline">About Us</a></li>
+                    <li><a href="#rooms" class="text-muted text-sm hover:text-gold transition-colors no-underline">Rooms & Suites</a></li>
+                    <li><a href="#amenities" class="text-muted text-sm hover:text-gold transition-colors no-underline">Amenities</a></li>
+                    <li><a href="#gallery" class="text-muted text-sm hover:text-gold transition-colors no-underline">Gallery</a></li>
+                    <li><a href="#" onclick="event.preventDefault();showToast('Offers page coming soon.','default')" class="text-muted text-sm hover:text-gold transition-colors no-underline">Special Offers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-cream text-xs tracking-[.15em] uppercase font-semibold mb-5">Services</h4>
+                <ul class="space-y-3">
+                    <li><a href="#dining" class="text-muted text-sm hover:text-gold transition-colors no-underline">Dining</a></li>
+                    <li><a href="#" onclick="event.preventDefault();showToast('Events page coming soon.','default')" class="text-muted text-sm hover:text-gold transition-colors no-underline">Events & Weddings</a></li>
+                    <li><a href="#" onclick="event.preventDefault();showToast('Spa page coming soon.','default')" class="text-muted text-sm hover:text-gold transition-colors no-underline">Spa & Wellness</a></li>
+                    <li><a href="#" onclick="event.preventDefault();showToast('Airport transfer available.','default')" class="text-muted text-sm hover:text-gold transition-colors no-underline">Airport Transfer</a></li>
+                    <li><a href="#" onclick="event.preventDefault();showToast('Corporate rates available.','default')" class="text-muted text-sm hover:text-gold transition-colors no-underline">Corporate Rates</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-cream text-xs tracking-[.15em] uppercase font-semibold mb-5">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="#contact" class="text-muted text-sm hover:text-gold transition-colors no-underline">Contact Us</a></li>
+                    <li><a href="#" onclick="event.preventDefault();showToast('FAQ page coming soon.','default')" class="text-muted text-sm hover:text-gold transition-colors no-underline">FAQ</a></li>
+                    <li><a href="#" onclick="event.preventDefault();showToast('Cancellation policy: Free up to 48h before.','default')" class="text-muted text-sm hover:text-gold transition-colors no-underline">Cancellation Policy</a></li>
+                    <li><a href="#" onclick="event.preventDefault();showToast('Privacy policy page coming soon.','default')" class="text-muted text-sm hover:text-gold transition-colors no-underline">Privacy Policy</a></li>
+                    <li><a href="#" onclick="event.preventDefault();showToast('Terms page coming soon.','default')" class="text-muted text-sm hover:text-gold transition-colors no-underline">Terms & Conditions</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div>
-        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="glass rounded-2xl p-8 gold-border">
-          <div class="grid grid-cols-2 gap-4 mb-4">
-            <div><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">First Name *</label><input type="text" id="c-fname" required class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-gold-500/50 transition-colors" placeholder="John"></div>
-            <div><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Last Name *</label><input type="text" id="c-lname" required class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-gold-500/50 transition-colors" placeholder="Doe"></div>
-          </div>
-          <div class="mb-4"><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Email *</label><input type="email" id="c-email" required class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-gold-500/50 transition-colors" placeholder="john@example.com"></div>
-          <div class="mb-4"><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Phone</label><input type="tel" id="c-phone" class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-gold-500/50 transition-colors" placeholder="+1 (555) 000-0000"></div>
-          <div class="mb-4"><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Subject</label><select id="c-subject" class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-gold-500/50 transition-colors"><option class="bg-luxury-900">General Inquiry</option><option class="bg-luxury-900">Reservation</option><option class="bg-luxury-900">Special Request</option><option class="bg-luxury-900">Event Booking</option><option class="bg-luxury-900">Private Dining</option></select></div>
-          <div class="mb-6"><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Message *</label><textarea id="c-message" required rows="4" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-gold-500/50 transition-colors resize-none" placeholder="How may we assist you?"></textarea></div>
-          <button type="submit" id="contact-btn" class="w-full bg-gold-500 text-luxury-900 text-xs font-bold uppercase tracking-wider h-12 rounded-xl hover:bg-gold-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(200,169,126,0.3)] transition-all duration-300 flex items-center justify-center gap-2"><iconify-icon icon="lucide:send" width="14"></iconify-icon> Send Message</button>
-          <p id="contact-error" class="text-xs text-red-400 mt-2 hidden"></p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="relative bg-luxury-950 pt-20 pb-8">
-  <div class="absolute top-0 left-0 right-0 gold-line opacity-20"></div>
-  <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
-      <div class="col-span-2 md:col-span-1">
-        <div class="flex items-center gap-3 mb-5"><div class="w-8 h-8 rounded-full border border-gold-500/40 flex items-center justify-center"><iconify-icon icon="lucide:crown" width="14" class="text-gold-400"></iconify-icon></div><span class="text-lg font-serif font-semibold text-white">The Grandeur</span></div>
-        <p class="text-sm text-white/30 leading-relaxed mb-6 font-light">Luxury hospitality redefined since 2009.</p>
-        <div class="flex items-center gap-3">
-          <button onclick="showToast('Follow us on Instagram','lucide:instagram')" class="w-9 h-9 rounded-full glass-light flex items-center justify-center hover:border-gold-500/30 transition-all duration-300"><iconify-icon icon="lucide:instagram" width="15" class="text-white/40"></iconify-icon></button>
-          <button onclick="showToast('Follow us on Twitter','lucide:twitter')" class="w-9 h-9 rounded-full glass-light flex items-center justify-center hover:border-gold-500/30 transition-all duration-300"><iconify-icon icon="lucide:twitter" width="15" class="text-white/40"></iconify-icon></button>
-          <button onclick="showToast('Follow us on Facebook','lucide:facebook')" class="w-9 h-9 rounded-full glass-light flex items-center justify-center hover:border-gold-500/30 transition-all duration-300"><iconify-icon icon="lucide:facebook" width="15" class="text-white/40"></iconify-icon></button>
+        <div class="border-t border-dark-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-muted text-xs">&copy; 2024 TG Grand Hotel. All rights reserved.</p>
+            <div class="flex items-center gap-6">
+                <span class="text-muted text-xs">Accepted:</span>
+                <div class="flex gap-3 text-muted text-lg">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-cc-amex"></i>
+                    <i class="fa-brands fa-cc-paypal"></i>
+                </div>
+            </div>
         </div>
-      </div>
-      <div><div class="text-[10px] font-bold uppercase tracking-[0.15em] text-gold-400/60 mb-5">Hotel</div><div class="space-y-3"><a href="#rooms" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 font-light">Rooms & Suites</a><a href="#amenities" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 font-light">Amenities</a><a href="#gallery" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 font-light">Gallery</a><a href="#reviews" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 font-light">Reviews</a></div></div>
-      <div><div class="text-[10px] font-bold uppercase tracking-[0.15em] text-gold-400/60 mb-5">Services</div><div class="space-y-3"><button onclick="showToast('Airport transfers from $60','lucide:plane')" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 text-left font-light">Airport Transfer</button><button onclick="showToast('Event spaces for 10–500 guests','lucide:calendar')" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 text-left font-light">Events & Weddings</button><button onclick="showToast('Private dining from $200/person','lucide:wine')" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 text-left font-light">Private Dining</button><button onclick="showToast('Yacht & helicopter charters','lucide:anchor')" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 text-left font-light">Yacht Charters</button></div></div>
-      <div><div class="text-[10px] font-bold uppercase tracking-[0.15em] text-gold-400/60 mb-5">Legal</div><div class="space-y-3"><button onclick="showToast('Privacy Policy page coming soon','lucide:shield')" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 text-left font-light">Privacy Policy</button><button onclick="showToast('Terms of Service page coming soon','lucide:file-text')" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 text-left font-light">Terms of Service</button><button onclick="showToast('Free cancellation up to 48 hours','lucide:clock')" class="block text-sm text-white/30 hover:text-gold-400 transition-colors duration-300 text-left font-light">Cancellation</button></div></div>
     </div>
-    <div class="gold-line opacity-10 mb-8"></div>
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="text-xs text-white/20 font-light">© 2025 The Grandeur. All rights reserved.</div>
-      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="text-xs text-white/20 hover:text-gold-400 transition-colors duration-300 flex items-center gap-2 font-light">Back to top <iconify-icon icon="lucide:arrow-up" width="12"></iconify-icon></button>
-    </div>
-  </div>
 </footer>
 
-<!-- Booking Modal -->
-<div id="booking-modal" class="modal-overlay hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md" onclick="closeBookingModalOutside(event)">
-  <div class="modal-content bg-luxury-900 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto gold-border" onclick="event.stopPropagation()">
-    <div class="p-6 border-b border-white/5 flex items-center justify-between">
-      <div><h3 class="text-lg font-serif font-semibold text-white">Reserve Your Stay</h3><p id="modal-room-label" class="text-xs text-gold-400/60 mt-0.5">Deluxe Room</p></div>
-      <button onclick="closeBookingModal()" class="w-9 h-9 rounded-full glass-light flex items-center justify-center hover:bg-white/10 transition-colors"><iconify-icon icon="lucide:x" width="18" class="text-white/40"></iconify-icon></button>
+<!-- Room Detail Modal -->
+<div class="modal-overlay" id="room-modal" onclick="if(event.target===this)closeRoomModal()">
+    <div class="modal-box">
+        <div id="room-modal-img" style="height:280px;overflow:hidden;border-radius:20px 20px 0 0"><img id="rm-img" src="" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="p-8">
+            <div class="flex items-center justify-between mb-4">
+                <p class="text-gold text-xs tracking-[.15em] uppercase" id="rm-cat">Category</p>
+                <button onclick="closeRoomModal()" class="text-muted hover:text-cream transition-colors text-xl bg-transparent border-none cursor-pointer" aria-label="Close">&times;</button>
+            </div>
+            <h3 class="font-display text-cream text-3xl mb-2" style="font-weight:400" id="rm-name">Room Name</h3>
+            <p class="text-muted text-sm leading-relaxed mb-6" id="rm-desc">Description</p>
+            <div class="grid grid-cols-2 gap-3 mb-6" id="rm-features"></div>
+            <div class="flex items-center justify-between pt-6 border-t border-dark-border">
+                <div>
+                    <span class="font-display text-gold text-3xl" id="rm-price">$0</span>
+                    <span class="text-muted text-xs"> / night</span>
+                </div>
+                <button class="btn-gold" id="rm-book-btn">Book This Room <i class="fa-solid fa-arrow-right text-xs"></i></button>
+            </div>
+        </div>
     </div>
-    <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="p-6 space-y-5">
-      <input type="hidden" id="b-room-type">
-      <div><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Full Name *</label><input type="text" id="b-name" required class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-gold-500/50 transition-colors" placeholder="John Doe"></div>
-      <div><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Email *</label><input type="email" id="b-email" required class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-gold-500/50 transition-colors" placeholder="john@example.com"></div>
-      <div><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Phone</label><input type="tel" id="b-phone" class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-gold-500/50 transition-colors" placeholder="+1 (555) 000-0000"></div>
-      <div class="grid grid-cols-2 gap-4">
-        <div><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Check-in *</label><input type="date" id="b-checkin" required onchange="calcPrice()" class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-gold-500/50 transition-colors"></div>
-        <div><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Check-out *</label><input type="date" id="b-checkout" required onchange="calcPrice()" class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-gold-500/50 transition-colors"></div>
-      </div>
-      <div><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Guests</label><div class="flex items-center gap-4"><button type="button" onclick="changeGuests(-1)" class="w-10 h-10 rounded-xl glass-light flex items-center justify-center hover:bg-white/10 transition-colors"><iconify-icon icon="lucide:minus" width="14" class="text-white/60"></iconify-icon></button><span id="b-guests-display" class="text-sm font-semibold text-white w-8 text-center">2</span><button type="button" onclick="changeGuests(1)" class="w-10 h-10 rounded-xl glass-light flex items-center justify-center hover:bg-white/10 transition-colors"><iconify-icon icon="lucide:plus" width="14" class="text-white/60"></iconify-icon></button><span class="text-xs text-white/30">guests</span></div><input type="hidden" id="b-guests" value="2"></div>
-      <div><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Room Type</label><select id="b-room-select" onchange="updateRoomType();calcPrice()" class="w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-gold-500/50 transition-colors"><option value="standard" class="bg-luxury-900">Standard — $149/night</option><option value="deluxe" class="bg-luxury-900">Deluxe — $249/night</option><option value="suite" class="bg-luxury-900">Suite — $399/night</option><option value="penthouse" class="bg-luxury-900">Penthouse — $699/night</option></select></div>
-      <div><label class="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5 block">Special Requests</label><textarea id="b-requests" rows="2" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-gold-500/50 transition-colors resize-none" placeholder="Champagne on arrival, extra pillows..."></textarea></div>
-      <div id="price-summary" class="glass-light rounded-xl p-5 hidden">
-        <div class="text-[10px] font-bold uppercase tracking-wider text-gold-400/60 mb-3">Price Summary</div>
-        <div class="space-y-2">
-          <div class="flex justify-between text-sm"><span class="text-white/40" id="ps-room-line">Deluxe × 1 night</span><span class="font-semibold text-white/80" id="ps-subtotal">$249</span></div>
-          <div class="flex justify-between text-sm"><span class="text-white/40">Service fee (12%)</span><span class="font-semibold text-white/80" id="ps-tax">$30</span></div>
-          <div class="gold-line opacity-20 my-2"></div>
-          <div class="flex justify-between"><span class="text-sm font-semibold text-white">Total</span><span class="text-xl font-serif font-semibold gold-text" id="ps-total">$279</span></div>
-        </div>
-      </div>
-      <p id="booking-error" class="text-xs text-red-400 hidden"></p>
-      <button type="submit" id="booking-btn" class="w-full bg-gold-500 text-luxury-900 text-xs font-bold uppercase tracking-wider h-12 rounded-xl hover:bg-gold-400 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(200,169,126,0.3)] transition-all duration-300 flex items-center justify-center gap-2"><iconify-icon icon="lucide:credit-card" width="14"></iconify-icon> Confirm Reservation</button>
-      <p class="text-[10px] text-white/20 text-center">Free cancellation up to 48 hours before check-in</p>
-    </form>
-  </div>
 </div>
 
-<!-- Lightbox -->
-<div id="lightbox" class="lightbox-overlay hidden fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4" onclick="closeLightbox()">
-  <button onclick="closeLightbox()" class="absolute top-6 right-6 w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors z-10"><iconify-icon icon="lucide:x" width="20" class="text-white"></iconify-icon></button>
-  <button onclick="prevImage(event)" class="absolute left-4 md:left-8 w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors z-10"><iconify-icon icon="lucide:chevron-left" width="20" class="text-white"></iconify-icon></button>
-  <button onclick="nextImage(event)" class="absolute right-4 md:right-8 w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors z-10"><iconify-icon icon="lucide:chevron-right" width="20" class="text-white"></iconify-icon></button>
-  <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" onclick="event.stopPropagation()" style="transition:opacity .3s">
-  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs text-white/30"><span id="lightbox-counter">1 / 5</span></div>
-</div>
+<!-- Toast -->
+<div id="toast-container" aria-live="polite"></div>
 
-<!-- Back to Top -->
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 left-6 z-50 w-11 h-11 rounded-full bg-gold-500/20 backdrop-blur-sm border border-gold-500/30 text-gold-400 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-gold-500 hover:text-luxury-900"><iconify-icon icon="lucide:arrow-up" width="16"></iconify-icon></button>
+<!-- WhatsApp Float -->
+<a href="https://wa.me/923001234567" target="_blank" rel="noopener" onclick="event.preventDefault();showToast('Opening WhatsApp chat...','default')" class="fixed bottom-6 left-6 w-14 h-14 rounded-full flex items-center justify-center text-white text-xl z-[100] transition-all hover:scale-110 hover:shadow-lg" style="background:#25D366;box-shadow:0 4px 20px rgba(37,211,102,.3)" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
 
-<script>
-/* ================================================================
-   EMAIL CONFIGURATION
-   All messages & bookings go to: farazbaloch0707@gmail.com
-   Powered by Formsubmit.co (free, no backend needed)
-   ================================================================ */
-const OWNER_EMAIL = 'farazbaloch0707@gmail.com';
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/' + OWNER_EMAIL;
-
-// ========== DATA ==========
-const rooms = [
-  { id:'standard', name:'Standard Room', price:149, size:'28m²', beds:'Queen Bed', guests:2, img:'https://picsum.photos/seed/lux-std-room/600/450.jpg', tag:'Classic' },
-  { id:'deluxe', name:'Deluxe Room', price:249, size:'38m²', beds:'King Bed', guests:2, img:'https://picsum.photos/seed/lux-deluxe-room/600/450.jpg', tag:'Popular' },
-  { id:'suite', name:'Executive Suite', price:399, size:'56m²', beds:'King + Living', guests:3, img:'https://picsum.photos/seed/lux-exec-suite/600/450.jpg', tag:'Premium' },
-  { id:'penthouse', name:'Penthouse', price:699, size:'95m²', beds:'King + 2 Rooms', guests:4, img:'https://picsum.photos/seed/lux-penthouse-gold/600/450.jpg', tag:'Exclusive' }
-];
-const galleryImages = [
-  'https://picsum.photos/seed/luxury-grand-lobby/1200/900.jpg',
-  'https://picsum.photos/seed/luxury-suite-night/1200/900.jpg',
-  'https://picsum.photos/seed/luxury-dining-gold/1200/900.jpg',
-  'https://picsum.photos/seed/luxury-spa-candle/1200/900.jpg',
-  'https://picsum.photos/seed/luxury-rooftop-night/1200/900.jpg'
-];
-const roomLabels = { standard:'Standard Room', deluxe:'Deluxe Room', suite:'Executive Suite', penthouse:'Penthouse' };
-const roomPrices = { standard:149, deluxe:249, suite:399, penthouse:699 };
-
-// ========== 3D TILT ==========
-function initTilt() {
-  document.querySelectorAll('.tilt-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const rx = ((e.clientY - r.top - r.height/2) / (r.height/2)) * -6;
-      const ry = ((e.clientX - r.left - r.width/2) / (r.width/2)) * 6;
-      card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
-    });
-    card.addEventListener('mouseleave', () => { card.style.transition='transform .6s ease-out'; card.style.transform='perspective(1000px) rotateX(0) rotateY(0) scale3d(1,1,1)'; });
-    card.addEventListener('mouseenter', () => { card.style.transition='transform .15s ease-out'; });
-  });
+<!-- Three.js -->
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
 }
+</script>
+<script type="module">
+import * as THREE from 'three';
 
-// ========== RENDER ROOMS ==========
-function renderRooms() {
-  document.getElementById('rooms-grid').innerHTML = rooms.map(r => `
-    <div class="tilt-card group relative rounded-2xl overflow-hidden gold-border cursor-pointer" style="transition:transform .6s ease-out; box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);" data-room="${r.id}">
-      <div class="absolute inset-0 overflow-hidden"><img src="${r.img}" alt="${r.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-luxury-950 via-luxury-950/40 to-transparent"></div>
-      <div class="absolute top-4 left-4"><span class="text-[9px] font-bold uppercase tracking-widest bg-gold-500/90 text-luxury-900 px-3 py-1 rounded-full">${r.tag}</span></div>
-      <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"><iconify-icon icon="lucide:heart" width="16" class="text-white"></iconify-icon></div>
-      <div class="absolute bottom-0 left-0 right-0 p-6">
-        <div class="flex items-end justify-between mb-4">
-          <div><h3 class="text-lg font-serif font-semibold text-white mb-1">${r.name}</h3><div class="flex items-center gap-3 text-[11px] text-white/40"><span class="flex items-center gap-1"><iconify-icon icon="lucide:maximize" width="11"></iconify-icon>${r.size}</span><span class="flex items-center gap-1"><iconify-icon icon="lucide:bed-double" width="11"></iconify-icon>${r.beds}</span><span class="flex items-center gap-1"><iconify-icon icon="lucide:users" width="11"></iconify-icon>${r.guests}</span></div></div>
-          <div class="text-right"><div class="text-2xl font-serif font-semibold gold-text">$${r.price}</div><div class="text-[10px] text-white/30">per night</div></div>
-        </div>
-        <button onclick="event.stopPropagation();openBookingModal('${r.id}')" class="w-full bg-gold-500 text-luxury-900 text-[10px] font-bold uppercase tracking-wider h-11 rounded-xl hover:bg-gold-400 transition-all duration-300 flex items-center justify-center gap-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">Reserve Now <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon></button>
-      </div>
-    </div>`).join('');
-  setTimeout(initTilt, 100);
-}
-renderRooms();
+const canvas = document.getElementById('three-canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.3;
 
-// ========== DEFAULT DATES ==========
-(function(){ const t=new Date(),tm=new Date(t);tm.setDate(tm.getDate()+1),f=d=>d.toISOString().split('T')[0]; ['hero-checkin','b-checkin'].forEach(i=>document.getElementById(i).value=f(t)); ['hero-checkout','b-checkout'].forEach(i=>document.getElementById(i).value=f(tm)); })();
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(0, 0, 8);
 
-// ========== MOBILE MENU ==========
-let mobileOpen=false;
-function toggleMobileMenu(){ mobileOpen=!mobileOpen; const m=document.getElementById('mobile-menu'),ic=document.getElementById('menu-icon'); if(mobileOpen){m.style.maxHeight=m.scrollHeight+'px';m.style.opacity='1';ic.setAttribute('icon','lucide:x');}else{m.style.maxHeight='0';m.style.opacity='0';ic.setAttribute('icon','lucide:menu');} }
-function closeMobileMenu(){ if(mobileOpen)toggleMobileMenu(); }
+// Environment
+const pmrem = new THREE.PMREMGenerator(renderer);
+const envScene = new THREE.Scene();
+envScene.background = new THREE.Color(0x0a0a0a);
+[{ c: 0xC9A96E, i: 10, p: [6, 6, 6] }, { c: 0x4a3520, i: 5, p: [-6, 4, -4] }, { c: 0xffffff, i: 3, p: [0, -4, 6] }].forEach(l => {
+    const pl = new THREE.PointLight(l.c, l.i, 60);
+    pl.position.set(...l.p);
+    envScene.add(pl);
+});
+scene.environment = pmrem.fromScene(envScene, 0.04).texture;
+pmrem.dispose();
 
-// ========== NAVBAR ==========
-window.addEventListener('scroll',()=>{
-  const n=document.getElementById('navbar'),b=document.getElementById('back-to-top');
-  if(window.scrollY>50){n.style.background='rgba(13,13,13,0.85)';n.style.backdropFilter='blur(20px)';n.style.borderBottom='1px solid rgba(200,169,126,0.08)';}else{n.style.background='transparent';n.style.backdropFilter='none';n.style.borderBottom='none';}
-  if(window.scrollY>600){b.style.opacity='1';b.style.pointerEvents='auto';}else{b.style.opacity='0';b.style.pointerEvents='none';}
+// Lights
+scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+const dLight = new THREE.DirectionalLight(0xfff5e6, 2);
+dLight.position.set(4, 6, 5);
+scene.add(dLight);
+const fLight = new THREE.DirectionalLight(0xC9A96E, 0.6);
+fLight.position.set(-4, 3, -3);
+scene.add(fLight);
+const pLight = new THREE.PointLight(0xC9A96E, 1.2, 18);
+pLight.position.set(0, -3, -5);
+scene.add(pLight);
+
+const eps = 0.001;
+
+// Create luxury ring (torusknot)
+const goldMat = new THREE.MeshPhysicalMaterial({
+    color: 0xC9A96E, metalness: 0.95, roughness: 0.12,
+    clearcoat: 0.4, clearcoatRoughness: 0.08, envMapIntensity: 1.8,
 });
 
-// ========== PARALLAX ==========
-window.addEventListener('scroll',()=>{ const s=window.scrollY; document.querySelectorAll('.parallax-slow').forEach(el=>{el.style.transform=`translateY(${s*0.05}px)`;}); });
+const ringGroup = new THREE.Group();
 
-// ========== REVEAL ==========
-const observer=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('active');});},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+// Main torus knot
+const knotGeo = new THREE.TorusKnotGeometry(Math.max(eps, 1.8), Math.max(eps, 0.15), 200, 32, 2, 3);
+const knot = new THREE.Mesh(knotGeo, goldMat);
+ringGroup.add(knot);
 
-// ========== TOAST ==========
-let toastTimeout;
-function showToast(msg,icon='lucide:check-circle'){ const t=document.getElementById('toast'); document.getElementById('toast-msg').textContent=msg; document.getElementById('toast-icon').setAttribute('icon',icon); t.classList.remove('hidden'); clearTimeout(toastTimeout); toastTimeout=setTimeout(()=>t.classList.add('hidden'),3500); }
+// Outer ring
+const ringGeo = new THREE.TorusGeometry(Math.max(eps, 3.2), Math.max(eps, 0.04), 16, 100);
+const ringMat = new THREE.MeshPhysicalMaterial({
+    color: 0xC9A96E, metalness: 0.9, roughness: 0.2,
+    transparent: true, opacity: 0.3, envMapIntensity: 1.2,
+});
+const outerRing = new THREE.Mesh(ringGeo, ringMat);
+outerRing.rotation.x = Math.PI / 2.5;
+ringGroup.add(outerRing);
 
-// ========== SEND EMAIL VIA FORMSUBMIT ==========
-async function sendEmail(data, subjectLine) {
-  try {
-    const response = await fetch(FORMSUBMIT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        ...data,
-        _subject: subjectLine,
-        _template: 'table',
-        _captcha: 'false'
-      })
-    });
-    const result = await response.json();
-    return result.success;
-  } catch (error) {
-    console.error('Email send error:', error);
-    // Fallback: open mailto
-    const body = Object.entries(data).filter(([k])=>!k.startsWith('_')).map(([k,v])=>`${k}: ${v}`).join('\n');
-    window.open(`mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(body)}`, '_blank');
-    return true; // Assume mailto worked
-  }
+// Second ring
+const ring2Geo = new THREE.TorusGeometry(Math.max(eps, 2.6), Math.max(eps, 0.025), 12, 80);
+const ring2 = new THREE.Mesh(ring2Geo, ringMat.clone());
+ring2.material.opacity = 0.2;
+ring2.rotation.x = Math.PI / 1.8;
+ring2.rotation.y = 0.5;
+ringGroup.add(ring2);
+
+ringGroup.scale.set(0.9, 0.9, 0.9);
+scene.add(ringGroup);
+
+// Particles
+function makeParticleTex() {
+    const c = document.createElement('canvas');
+    c.width = 64; c.height = 64;
+    const ctx = c.getContext('2d');
+    const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    g.addColorStop(0, 'rgba(201,169,110,1)');
+    g.addColorStop(0.25, 'rgba(201,169,110,0.4)');
+    g.addColorStop(1, 'rgba(201,169,110,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, 64, 64);
+    return new THREE.CanvasTexture(c);
 }
 
-// ========== HERO SEARCH ==========
-function heroSearch(){
-  const ci=document.getElementById('hero-checkin').value,co=document.getElementById('hero-checkout').value,err=document.getElementById('hero-error');
-  err.classList.add('hidden');
-  if(!ci||!co){err.textContent='Please select check-in and check-out dates.';err.classList.remove('hidden');return;}
-  if(new Date(co)<=new Date(ci)){err.textContent='Check-out must be after check-in.';err.classList.remove('hidden');return;}
-  const type=document.getElementById('hero-room').value;
-  document.getElementById('rooms').scrollIntoView({behavior:'smooth'});
-  setTimeout(()=>{showToast(`${roomLabels[type]} available — $${roomPrices[type]}/night`,'lucide:check-circle');document.querySelectorAll('.tilt-card').forEach((c,i)=>{if(rooms[i].id===type){c.style.boxShadow='0 0 0 2px #C8A97E, 0 25px 50px -12px rgba(0,0,0,0.5)';setTimeout(()=>{c.style.boxShadow='0 25px 50px -12px rgba(0,0,0,0.5)';},2500);}});},700);
+const pCount = 150;
+const pPos = new Float32Array(pCount * 3);
+const pVel = [];
+for (let i = 0; i < pCount; i++) {
+    pPos[i * 3] = (Math.random() - 0.5) * 16;
+    pPos[i * 3 + 1] = (Math.random() - 0.5) * 16;
+    pPos[i * 3 + 2] = (Math.random() - 0.5) * 16;
+    pVel.push({ x: (Math.random() - 0.5) * 0.004, y: (Math.random() - 0.5) * 0.004, z: (Math.random() - 0.5) * 0.004 });
+}
+const pGeo = new THREE.BufferGeometry();
+pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+const pMat = new THREE.PointsMaterial({
+    map: makeParticleTex(), size: 0.1, transparent: true,
+    blending: THREE.AdditiveBlending, depthWrite: false,
+    color: 0xC9A96E, opacity: 0.5,
+});
+const particles = new THREE.Points(pGeo, pMat);
+scene.add(particles);
+
+// Scroll
+let targetSY = 0, smoothSY = 0;
+window.addEventListener('scroll', () => { targetSY = window.scrollY; }, { passive: true });
+
+const phases = [
+    { rx: 0, ry: 0, rz: 0, sx: 0, sy: 0, sz: 0, sc: 0.9, cx: 0, cy: 0, cz: 8, op: 0.9 },
+    { rx: 0.4, ry: 1.2, rz: 0.2, sx: 3.5, sy: 0.5, sz: 0, sc: 0.65, cx: -1, cy: 0.5, cz: 7, op: 0.8 },
+    { rx: 0.2, ry: 2.5, rz: 0, sx: 4, sy: -2, sz: 0, sc: 0.3, cx: -1.5, cy: 0, cz: 8, op: 0 },
+    { rx: 0.3, ry: 3.8, rz: -0.15, sx: -3, sy: 0, sz: 0, sc: 0.75, cx: 1.5, cy: 0.3, cz: 6.5, op: 0.7 },
+    { rx: 0.5, ry: 5, rz: 0.1, sx: 0, sy: -1, sz: 0, sc: 0.4, cx: 0, cy: -0.5, cz: 9, op: 0 },
+    { rx: 0.3, ry: 6.2, rz: 0, sx: -2, sy: 1.5, sz: 0, sc: 0.8, cx: 1, cy: 0.5, cz: 7, op: 0.6 },
+    { rx: 0, ry: 7.5, rz: 0, sx: 0, sy: 0, sz: 0, sc: 0.35, cx: 0, cy: 0, cz: 9, op: 0 },
+];
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+function ss(t) { return t * t * (3 - 2 * t); }
+let autoRotY = 0;
+const clock = new THREE.Clock();
+
+function animate() {
+    requestAnimationFrame(animate);
+    const elapsed = clock.getElapsedTime();
+    smoothSY += (targetSY - smoothSY) * 0.06;
+    const vh = window.innerHeight;
+    const maxS = Math.max(1, document.body.scrollHeight - vh);
+    const tp = smoothSY / maxS;
+    const pp = tp * (phases.length - 1);
+    const pi = Math.min(Math.floor(pp), phases.length - 2);
+    const lt = ss(pp - pi);
+    const f = phases[pi], t = phases[Math.min(pi + 1, phases.length - 1)];
+
+    ringGroup.position.set(lerp(f.sx, t.sx, lt), lerp(f.sy, t.sy, lt), lerp(f.sz, t.sz, lt));
+    ringGroup.rotation.set(lerp(f.rx, t.rx, lt), lerp(f.ry, t.ry, lt) + autoRotY, lerp(f.rz, t.rz, lt));
+    const s = lerp(f.sc, t.sc, lt);
+    ringGroup.scale.set(s, s, s);
+    camera.position.set(lerp(f.cx, t.cx, lt), lerp(f.cy, t.cy, lt), lerp(f.cz, t.cz, lt));
+    camera.lookAt(lerp(f.sx, t.sx, lt) * 0.2, lerp(f.sy, t.sy, lt) * 0.2, 0);
+
+    const op = lerp(f.op, t.op, lt);
+    goldMat.opacity = op; goldMat.transparent = op < 1;
+    ringMat.opacity = op * 0.3; ring2.material.opacity = op * 0.2;
+    pMat.opacity = op * 0.5;
+
+    autoRotY += 0.002;
+    outerRing.rotation.z = elapsed * 0.08;
+    ring2.rotation.z = -elapsed * 0.06;
+    knot.rotation.z = Math.sin(elapsed * 0.15) * 0.05;
+
+    const pa = pGeo.attributes.position.array;
+    for (let i = 0; i < pCount; i++) {
+        pa[i*3] += pVel[i].x; pa[i*3+1] += pVel[i].y; pa[i*3+2] += pVel[i].z;
+        for (let j = 0; j < 3; j++) {
+            if (pa[i*3+j] > 8) pa[i*3+j] = -8;
+            if (pa[i*3+j] < -8) pa[i*3+j] = 8;
+        }
+    }
+    pGeo.attributes.position.needsUpdate = true;
+    particles.rotation.y = elapsed * 0.015;
+    pLight.intensity = 1 + Math.sin(elapsed * 0.7) * 0.4;
+
+    renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Preloader
+window.addEventListener('load', () => { setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 2200); });
+setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 5000);
+
+// Reveal observer
+const ro = new IntersectionObserver(e => e.forEach(en => { if (en.isIntersecting) en.target.classList.add('vis'); }), { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// Stat counters
+const so = new IntersectionObserver(e => e.forEach(en => {
+    if (en.isIntersecting) {
+        const el = en.target, target = +el.dataset.count, suf = el.dataset.suffix || '';
+        let cur = 0; const inc = target / 50;
+        const timer = setInterval(() => { cur += inc; if (cur >= target) { cur = target; clearInterval(timer); } el.textContent = Math.floor(cur).toLocaleString() + suf; }, 30);
+        so.unobserve(el);
+    }
+}), { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => so.observe(el));
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+
+// Hero parallax
+const hc = document.getElementById('hero-content');
+window.addEventListener('scroll', () => {
+    const sy = window.scrollY;
+    if (sy < window.innerHeight) {
+        hc.style.transform = `translateY(${sy * 0.35}px)`;
+        hc.style.opacity = Math.max(0, 1 - sy / (window.innerHeight * 0.6));
+    }
+}, { passive: true });
+</script>
+
+<!-- UI Logic -->
+<script>
+// Room data
+const rooms = [
+    { cat:'Standard', name:'Premium Standard', desc:'A refined sanctuary featuring plush bedding, a work desk with ergonomic chair, 43-inch smart TV, and a marble bathroom with rain shower. Perfect for the discerning business or leisure traveler.', price:'$180', img:'https://picsum.photos/seed/tgroom1/800/500.jpg',
+      features:[{l:'Size',v:'35 sqm'},{l:'Bed',v:'Queen'},{l:'View',v:'City'},{l:'Bathroom',v:'Rain Shower'},{l:'Max Guests',v:'2'},{l:'WiFi',v:'Free'}] },
+    { cat:'Deluxe', name:'Garden View', desc:'Step into tranquility with this garden-facing deluxe room featuring a private balcony, deep soaking tub, separate living area, and premium minibar. The lush greenery outside creates a peaceful urban retreat.', price:'$240', img:'https://picsum.photos/seed/tgroom2/800/500.jpg',
+      features:[{l:'Size',v:'48 sqm'},{l:'Bed',v:'King'},{l:'View',v:'Garden'},{l:'Bathroom',v:'Soaking Tub'},{l:'Max Guests',v:'3'},{l:'Balcony',v:'Private'}] },
+    { cat:'Executive', name:'Heritage Deluxe', desc:'Our executive suite blends heritage charm with modern luxury. Features a separate living room, dining area, butler service, and exclusive lounge access. Designed for those who expect nothing but the finest.', price:'$320', img:'https://picsum.photos/seed/tgroom3/800/500.jpg',
+      features:[{l:'Size',v:'62 sqm'},{l:'Bed',v:'King'},{l:'View',v:'Panoramic'},{l:'Service',v:'Butler'},{l:'Max Guests',v:'3'},{l:'Lounge',v:'Access'}] },
+    { cat:'Signature Suite', name:'Royal Suite', desc:'The pinnacle of TG Grand luxury. This 95sqm masterpiece features a grand living room, private terrace with jacuzzi, walk-in closet, dual vanity bathroom, and a personal concierge. An experience beyond compare.', price:'$450', img:'https://picsum.photos/seed/tgroom4/800/500.jpg',
+      features:[{l:'Size',v:'95 sqm'},{l:'Bed',v:'King'},{l:'View',v:'360 Panoramic'},{l:'Terrace',v:'Private Jacuzzi'},{l:'Max Guests',v:'4'},{l:'Concierge',v:'Personal'}] },
+];
+
+function scrollTo(sel) {
+    const el = document.querySelector(sel);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ========== BOOKING MODAL ==========
-function openBookingModal(roomType){
-  const modal=document.getElementById('booking-modal');
-  document.getElementById('b-room-type').value=roomType; document.getElementById('b-room-select').value=roomType;
-  document.getElementById('modal-room-label').textContent=roomLabels[roomType];
-  document.getElementById('price-summary').classList.add('hidden'); document.getElementById('booking-error').classList.add('hidden');
-  document.getElementById('booking-form').reset(); document.getElementById('b-room-select').value=roomType;
-  document.getElementById('b-guests').value=2; document.getElementById('b-guests-display').textContent='2';
-  const t=new Date(),tm=new Date(t);tm.setDate(tm.getDate()+1),f=d=>d.toISOString().split('T')[0];
-  document.getElementById('b-checkin').value=f(t); document.getElementById('b-checkout').value=f(tm);
-  document.getElementById('booking-btn').disabled=false;
-  document.getElementById('booking-btn').innerHTML='<iconify-icon icon="lucide:credit-card" width="14"></iconify-icon> Confirm Reservation';
-  modal.classList.remove('hidden'); document.body.style.overflow='hidden'; calcPrice();
+// Mobile menu
+function toggleMM() {
+    const m = document.getElementById('mobile-menu'), b = document.getElementById('ham-btn');
+    m.classList.toggle('active'); b.classList.toggle('active');
+    document.body.style.overflow = m.classList.contains('active') ? 'hidden' : '';
 }
-function closeBookingModal(){ document.getElementById('booking-modal').classList.add('hidden'); document.body.style.overflow=''; }
-function closeBookingModalOutside(e){ if(e.target===e.currentTarget)closeBookingModal(); }
-function updateRoomType(){ const t=document.getElementById('b-room-select').value; document.getElementById('b-room-type').value=t; document.getElementById('modal-room-label').textContent=roomLabels[t]; }
-function changeGuests(d){ let g=parseInt(document.getElementById('b-guests').value)+d; g=Math.max(1,Math.min(6,g)); document.getElementById('b-guests').value=g; document.getElementById('b-guests-display').textContent=g; }
-function calcPrice(){
-  const ci=document.getElementById('b-checkin').value,co=document.getElementById('b-checkout').value,type=document.getElementById('b-room-select').value,s=document.getElementById('price-summary');
-  if(!ci||!co){s.classList.add('hidden');return;} const d1=new Date(ci),d2=new Date(co); if(d2<=d1){s.classList.add('hidden');return;}
-  const n=Math.round((d2-d1)/(864e5)),ppn=roomPrices[type],sub=n*ppn,tax=Math.round(sub*0.12),tot=sub+tax;
-  document.getElementById('ps-room-line').textContent=`${roomLabels[type]} × ${n} night${n>1?'s':''}`;
-  document.getElementById('ps-subtotal').textContent=`$${sub.toLocaleString()}`;
-  document.getElementById('ps-tax').textContent=`$${tax.toLocaleString()}`;
-  document.getElementById('ps-total').textContent=`$${tot.toLocaleString()}`;
-  s.classList.remove('hidden');
+function closeMM() {
+    document.getElementById('mobile-menu').classList.remove('active');
+    document.getElementById('ham-btn').classList.remove('active');
+    document.body.style.overflow = '';
 }
 
-async function handleBookingSubmit(e){
-  e.preventDefault();
-  const err=document.getElementById('booking-error'); err.classList.add('hidden');
-  const ci=document.getElementById('b-checkin').value,co=document.getElementById('b-checkout').value,
-        name=document.getElementById('b-name').value.trim(),email=document.getElementById('b-email').value.trim(),
-        phone=document.getElementById('b-phone').value.trim(),type=document.getElementById('b-room-select').value,
-        guests=document.getElementById('b-guests').value,requests=document.getElementById('b-requests').value.trim();
-  if(!name||!email){err.textContent='Please fill in all required fields.';err.classList.remove('hidden');return;}
-  if(new Date(co)<=new Date(ci)){err.textContent='Check-out must be after check-in.';err.classList.remove('hidden');return;}
-  const today=new Date();today.setHours(0,0,0,0);
-  if(new Date(ci)<today){err.textContent='Check-in cannot be in the past.';err.classList.remove('hidden');return;}
+// Booking panel
+function openBooking() { document.getElementById('booking-panel').classList.add('open'); document.getElementById('booking-backdrop').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeBooking() { document.getElementById('booking-panel').classList.remove('open'); document.getElementById('booking-backdrop').classList.remove('open'); document.body.style.overflow=''; }
 
-  const n=Math.round((new Date(co)-new Date(ci))/(864e5)),ppn=roomPrices[type],sub=n*ppn,tax=Math.round(sub*0.12),tot=sub+tax;
-
-  const btn=document.getElementById('booking-btn');
-  btn.disabled=true; btn.innerHTML='<iconify-icon icon="lucide:loader-2" width="14" class="animate-spin"></iconify-icon> Sending to host...';
-
-  // Send booking details to your email
-  const emailData = {
-    'Guest Name': name,
-    'Guest Email': email,
-    'Guest Phone': phone || 'Not provided',
-    'Room Type': roomLabels[type],
-    'Check-in': ci,
-    'Check-out': co,
-    'Nights': n,
-    'Guests': guests,
-    'Price Per Night': `$${ppn}`,
-    'Subtotal': `$${sub.toLocaleString()}`,
-    'Tax (12%)': `$${tax.toLocaleString()}`,
-    'Total': `$${tot.toLocaleString()}`,
-    'Special Requests': requests || 'None'
-  };
-
-  const success = await sendEmail(emailData, `🏨 NEW BOOKING: ${roomLabels[type]} — ${name}`);
-
-  closeBookingModal();
-  if(success){
-    showToast(`Booking confirmed! ${roomLabels[type]} for ${n} night${n>1?'s':''}. Details sent to host.`, 'lucide:check-circle');
-  } else {
-    showToast(`Booking received! Email client opened — please send to confirm.`, 'lucide:mail');
-  }
+function handleBooking(e) {
+    e.preventDefault();
+    closeBooking();
+    showToast('Reservation confirmed! Check your email for details.', 'gold');
+    e.target.reset();
 }
 
-// ========== CONTACT FORM → YOUR EMAIL ==========
-async function handleContactSubmit(e){
-  e.preventDefault();
-  const err=document.getElementById('contact-error'); err.classList.add('hidden');
-  const fn=document.getElementById('c-fname').value.trim(),ln=document.getElementById('c-lname').value.trim(),
-        em=document.getElementById('c-email').value.trim(),ph=document.getElementById('c-phone').value.trim(),
-        subj=document.getElementById('c-subject').value,msg=document.getElementById('c-message').value.trim();
-  if(!fn||!ln||!em||!msg){err.textContent='Please fill in all required fields.';err.classList.remove('hidden');return;}
-
-  const btn=document.getElementById('contact-btn');
-  btn.disabled=true; btn.innerHTML='<iconify-icon icon="lucide:loader-2" width="14" class="animate-spin"></iconify-icon> Sending...';
-
-  // Send contact message to your email
-  const emailData = {
-    'First Name': fn,
-    'Last Name': ln,
-    'Email': em,
-    'Phone': ph || 'Not provided',
-    'Subject': subj,
-    'Message': msg,
-    'Received At': new Date().toLocaleString()
-  };
-
-  const success = await sendEmail(emailData, `✉️ New Message from ${fn} ${ln} — ${subj}`);
-
-  btn.disabled=false; btn.innerHTML='<iconify-icon icon="lucide:send" width="14"></iconify-icon> Send Message';
-  document.getElementById('contact-form').reset();
-
-  if(success){
-    showToast(`Message sent successfully to farazbaloch0707@gmail.com!`, 'lucide:check-circle');
-  } else {
-    showToast(`Email client opened — please send to confirm.`, 'lucide:mail');
-  }
+function handleNewsletter(e) {
+    e.preventDefault();
+    showToast('Welcome! Check your inbox for exclusive offers.', 'gold');
+    e.target.reset();
 }
 
-// ========== LIGHTBOX ==========
-let currentImage=0;
-function openLightbox(i){ currentImage=i; document.getElementById('lightbox-img').src=galleryImages[i]; document.getElementById('lightbox-counter').textContent=`${i+1} / ${galleryImages.length}`; document.getElementById('lightbox').classList.remove('hidden'); document.body.style.overflow='hidden'; }
-function closeLightbox(){ document.getElementById('lightbox').classList.add('hidden'); document.body.style.overflow=''; }
-function nextImage(e){ e.stopPropagation(); currentImage=(currentImage+1)%galleryImages.length; document.getElementById('lightbox-img').src=galleryImages[currentImage]; document.getElementById('lightbox-counter').textContent=`${currentImage+1} / ${galleryImages.length}`; }
-function prevImage(e){ e.stopPropagation(); currentImage=(currentImage-1+galleryImages.length)%galleryImages.length; document.getElementById('lightbox-img').src=galleryImages[currentImage]; document.getElementById('lightbox-counter').textContent=`${currentImage+1} / ${galleryImages.length}`; }
-document.addEventListener('keydown',e=>{
-  if(!document.getElementById('lightbox').classList.contains('hidden')){if(e.key==='Escape')closeLightbox();if(e.key==='ArrowRight')nextImage(e);if(e.key==='ArrowLeft')prevImage(e);}
-  if(!document.getElementById('booking-modal').classList.contains('hidden')&&e.key==='Escape')closeBookingModal();
+// Toast
+function showToast(msg, type) {
+    const c = document.getElementById('toast-container');
+    const t = document.createElement('div');
+    t.className = 'toast';
+    const icons = { gold: '<i class="fa-solid fa-circle-check" style="color:#C9A96E;font-size:1.1rem"></i>', default: '<i class="fa-solid fa-circle-info" style="color:#C9A96E;font-size:1.1rem"></i>' };
+    t.innerHTML = (icons[type] || icons.default) + '<span>' + msg + '</span>';
+    c.appendChild(t);
+    requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add('show')));
+    setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 500); }, 4000);
+}
+
+// Room modal
+function openRoomModal(i) {
+    const r = rooms[i];
+    document.getElementById('rm-cat').textContent = r.cat;
+    document.getElementById('rm-name').textContent = r.name;
+    document.getElementById('rm-desc').textContent = r.desc;
+    document.getElementById('rm-price').textContent = r.price;
+    document.getElementById('rm-img').src = r.img;
+    document.getElementById('rm-img').alt = r.name;
+    document.getElementById('rm-features').innerHTML = r.features.map(f =>
+        '<div class="p-3 rounded-lg" style="background:rgba(255,255,255,.03);border:1px solid #222"><p class="text-muted text-xs uppercase tracking-wider">' + f.l + '</p><p class="text-cream text-sm font-medium mt-1">' + f.v + '</p></div>'
+    ).join('');
+    document.getElementById('rm-book-btn').onclick = function() { closeRoomModal(); openBooking(); };
+    document.getElementById('room-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeRoomModal() {
+    document.getElementById('room-modal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Keyboard: Escape closes modals
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeRoomModal(); closeBooking(); closeMM(); }
 });
 </script>
 </body>
